@@ -17,9 +17,7 @@ project "Scribble2D-Sandbox"
         "../Scribble2D-Core",
         "../Scribble2D-Core/vendor/spdlog/include",
 		"../Scribble2D-Core/src",
-		"../Scribble2D-Core/vendor",
-		"../%{IncludeDir.glm}",
-		"../%{IncludeDir.Glad}"
+		"../Scribble2D-Core/vendor"
     }
 
     links {

@@ -1,7 +1,8 @@
 workspace "Scribble2D"
     architecture "x64"
     startproject "Scribble2D-Sandbox"
-
+    staticruntime "On"
+    
     configurations {
         "Debug",
         "Release"

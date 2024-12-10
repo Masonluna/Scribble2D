@@ -3,8 +3,8 @@ project "Scribble2D-Core"
     language "C++"
     staticruntime "On"
 
-    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-    objdir("bin-int/" .. outputdir .. "/%{prj.name}")
+    targetdir ("../bin/" .. outputdir .. "/%{prj.name}")
+    objdir("../bin-int/" .. outputdir .. "/%{prj.name}")
 
     files {
         "src/**.h",
@@ -12,8 +12,7 @@ project "Scribble2D-Core"
     }
 
     includedirs {
-        "%{prj.name}/src",
-        "%{prj.name}/src/Core",
+        "src",
         "vendor/GLFW/include",
         "vendor/Glad/include",
         "vendor/glm/glm-1.0.1",
@@ -28,8 +27,8 @@ project "Scribble2D-Core"
     links {
         "glfw3.lib",
         "opengl32.lib",
-        "spdlog.lib",
-        "Glad"
+        "Glad",
+        "spdlog.lib"
     }
 
     filter "system:windows"

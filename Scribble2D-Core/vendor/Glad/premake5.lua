@@ -1,10 +1,12 @@
 workspace "GladLibrary"
     configurations { "Debug", "Release" }
-    architecture "x86_64"
+    architecture "x64"
 
 project "Glad"
     kind "StaticLib"
     language "C"
+    staticruntime "On"
+
     targetdir "build/%{cfg.buildcfg}" -- Output directory for the library
     objdir "build/obj/%{cfg.buildcfg}" -- Intermediate object files
 
