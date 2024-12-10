@@ -14,4 +14,7 @@ namespace Scribble {
 		
 	};
 
+	// Should be defined by the client
+	Application* CreateApplication();
+
 }

@@ -1,9 +1,16 @@
 #include <iostream>
-#include "Scribble2D.h"
+#include <Scribble2D.h>
 
-int main()
+
+class Sandbox : public Scribble::Application
 {
-	Scribble::Log::Init();
-	SC_TRACE("Hello, Log!");
-	return 0;
+public:
+
+	Sandbox() {}
+	~Sandbox() {}
+};
+
+Scribble::Application* Scribble::CreateApplication()
+{
+	return new Sandbox();
 }
