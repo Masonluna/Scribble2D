@@ -21,8 +21,9 @@ project "Scribble2D-Core"
     }
 
     libdirs {
-        "%{prj.name}/vendor/GLFW/lib",
-        "%{prj.name}/vendor/spdlog/lib"
+        "vendor/GLFW/lib",
+        "vendor/spdlog/lib",
+        "vendor/Glad/build/Debug"
     }
     links {
         "glfw3.lib",

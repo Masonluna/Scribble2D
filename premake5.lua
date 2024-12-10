@@ -1,6 +1,6 @@
 workspace "Scribble2D"
     architecture "x64"
-    startproject "Scribble2D-Core"
+    startproject "Scribble2D-Sandbox"
 
     configurations {
         "Debug",
