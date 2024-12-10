@@ -1,7 +1,9 @@
 #include <iostream>
+#include "Scribble2D.h"
 
 int main()
 {
-	std::cout << "Hello, World!";
+	Scribble::Log::Init();
+	SC_TRACE("Hello, Log!");
 	return 0;
 }

@@ -14,11 +14,12 @@ project "Scribble2D-Sandbox"
     }
 
     includedirs {
+        "../Scribble2D-Core",
         "../Scribble2D-Core/vendor/spdlog/include",
 		"../Scribble2D-Core/src",
 		"../Scribble2D-Core/vendor",
-		"../Scribble2D-Core/%{IncludeDir.glm}",
-		"../Scribble2D-Core/%{IncludeDir.Glad}"
+		"../%{IncludeDir.glm}",
+		"../%{IncludeDir.Glad}"
     }
 
     links {
@@ -39,3 +40,6 @@ project "Scribble2D-Sandbox"
         defines "SCRIBBLE_RELEEASE"
         runtime "Release"
         optimize "on"
+
+    filter "action:vs*"
+        buildoptions { "/utf-8" }

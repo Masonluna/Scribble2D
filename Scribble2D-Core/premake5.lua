@@ -14,10 +14,10 @@ project "Scribble2D-Core"
     includedirs {
         "%{prj.name}/src",
         "%{prj.name}/src/Core",
-        "%{IncludeDir.GLFW}",
-        "%{IncludeDir.Glad}",
-        "%{IncludeDir.glm}",
-        "%{IncludeDir.spdlog}"
+        "vendor/GLFW/include",
+        "vendor/Glad/include",
+        "vendor/glm/glm-1.0.1",
+        "vendor/spdlog/include"
     }
 
     libdirs {
