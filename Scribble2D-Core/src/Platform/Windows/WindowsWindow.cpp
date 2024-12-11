@@ -1,10 +1,10 @@
+#include "scbpch.h"
 #include <glad/glad.h>
 #include "WindowsWindow.h"
 
 #include "Events/ApplicationEvent.h"
 #include "Events/MouseEvent.h"
-#include "Core/Log.h"
-
+#include "Events/KeyEvent.h"
 
 namespace Scribble {
 
@@ -38,10 +38,7 @@ namespace Scribble {
 
 		if (!s_GLFWInitialized) {
 			int success = glfwInit();
-			if (!success) {
-				SCB_ERROR("Could not initialize GLFW!");
-				exit(EXIT_FAILURE);
-			}
+			SCB_CORE_ASSERT(success, "Could not initialize GLFW!");
 			glfwSetErrorCallback(GLFWErrorCallback);
 			s_GLFWInitialized = true;
 		}
@@ -71,7 +68,7 @@ namespace Scribble {
 				data.EventCallback(event);
 			});
 
-		/*glfwSetKeyCallback(m_Window, [](GLFWwindow* window, int key, int scancode, int action, int mods)
+		glfwSetKeyCallback(m_Window, [](GLFWwindow* window, int key, int scancode, int action, int mods)
 			{
 				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
@@ -96,7 +93,7 @@ namespace Scribble {
 					break;
 				}
 				}
-			});*/
+			});
 
 		glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int button, int action, int mods)
 			{

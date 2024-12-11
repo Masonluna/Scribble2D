@@ -7,6 +7,9 @@ project "Scribble2D-Core"
     targetdir ("../bin/" .. outputdir .. "/%{prj.name}")
     objdir("../bin-int/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "scbpch.h"
+	pchsource "src/scbpch.cpp"
+
     files {
         "src/**.h",
         "src/**.cpp",

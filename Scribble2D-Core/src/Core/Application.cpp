@@ -1,7 +1,6 @@
-#include "Application.h"
-#include <iostream>
-#include "Log.h"
+#include "scbpch.h"
 
+#include "Application.h"
 #include <glad/glad.h>
 
 namespace Scribble {

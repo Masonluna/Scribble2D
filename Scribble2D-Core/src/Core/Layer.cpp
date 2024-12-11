@@ -1,3 +1,4 @@
+#include "scbpch.h"
 #include "Layer.h"
 
 namespace Scribble {

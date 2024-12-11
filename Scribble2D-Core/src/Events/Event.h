@@ -1,6 +1,6 @@
 #pragma once
-#include <string>
-#include <functional>
+#include "scbpch.h"
+#include "Core/Core.h"
 
 #define BIT(x) (1 << x)
 namespace Scribble {
