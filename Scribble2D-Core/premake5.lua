@@ -1,6 +1,7 @@
 project "Scribble2D-Core"
     kind "StaticLib"
     language "C++"
+    cppdialect "C++17"
     staticruntime "On"
 
     targetdir ("../bin/" .. outputdir .. "/%{prj.name}")
@@ -25,9 +26,9 @@ project "Scribble2D-Core"
         "vendor/Glad/build/Debug"
     }
     links {
-        "glfw3.lib",
-        "opengl32.lib",
+        "glfw3_mt.lib",
         "Glad",
+        "opengl32.lib",
         "spdlog.lib"
     }
 

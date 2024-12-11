@@ -38,7 +38,10 @@ namespace Scribble {
 
 		if (!s_GLFWInitialized) {
 			int success = glfwInit();
-			SCB_ERROR("Could not initialize GLFW!");
+			if (!success) {
+				SCB_ERROR("Could not initialize GLFW!");
+				exit(EXIT_FAILURE);
+			}
 			glfwSetErrorCallback(GLFWErrorCallback);
 			s_GLFWInitialized = true;
 		}
