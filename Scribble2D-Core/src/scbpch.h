@@ -13,6 +13,7 @@
 #include <unordered_set>
 
 #include "Core/Log.h"
+#include "Core/Core.h"
 
 #ifdef SCRIBBLE_PLATFORM_WINDOWS
 	#include <Windows.h>

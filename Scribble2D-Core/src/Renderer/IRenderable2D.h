@@ -1,4 +1,12 @@
 #pragma once
-class IRenderable2D
-{};
 
+namespace Scribble {
+
+	class IRenderable2D
+	{
+	public:
+
+	private:
+	};
+
+}
