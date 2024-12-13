@@ -60,8 +60,6 @@ namespace Scribble {
 		m_LayerStack.PushOverlay(overlay);
 	}
 
-
-
 	bool Application::OnWindowClose(WindowCloseEvent& e)
 	{
 		m_Running = false;

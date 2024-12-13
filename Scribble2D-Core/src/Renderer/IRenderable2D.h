@@ -2,8 +2,6 @@
 #include "scbpch.h"
 #include "glm/glm.hpp"
 
-
-
 namespace Scribble {
 
 	class IRenderable2D
@@ -25,7 +23,7 @@ namespace Scribble {
 
 		virtual void DrawLine(glm::vec2& p1, glm::vec2& p2, glm::vec4& color, float thickness) = 0;
 
-		virtual void DrawText(const std::string& text, glm::vec2& pos, float scale, const glm::vec4& color);
+		virtual void DrawText(const std::string& text, glm::vec2& pos, float scale, const glm::vec4& color) = 0;
 
 		// Batch Rendering
 		virtual void BeginBatch() = 0;
