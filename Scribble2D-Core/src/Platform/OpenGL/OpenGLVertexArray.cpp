@@ -21,7 +21,7 @@ namespace Scribble {
 		case ShaderDataType::Bool:     return GL_BOOL;
 		}
 
-		SCB_CORE_ASSERT(false, "Unknown ShaderDataType!");
+		SCB_CORE_ASSERT(false, "Unknown ShaderDataType");
 		return 0;
 	}
 
@@ -109,7 +109,7 @@ namespace Scribble {
 				break;
 			}
 			default:
-				SCB_CORE_ASSERT(false, "Unknown ShaderDataType!");
+				SCB_CORE_ASSERT(false, "Unknown ShaderDataType");
 			}
 		}
 
