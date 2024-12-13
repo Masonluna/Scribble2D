@@ -48,17 +48,17 @@ namespace Scribble {
 	void OpenGLShader::Compile(const char* vertexSource, const char* fragmentSource, const char* geometrySource)
 	{
 		uint32_t sVertex, sFragment, gShader;
-		// vertex Shader
+
 		sVertex = glCreateShader(GL_VERTEX_SHADER);
 		glShaderSource(sVertex, 1, &vertexSource, NULL);
 		glCompileShader(sVertex);
 		checkCompileErrors(sVertex, "VERTEX");
-		// fragment Shader
+
 		sFragment = glCreateShader(GL_FRAGMENT_SHADER);
 		glShaderSource(sFragment, 1, &fragmentSource, NULL);
 		glCompileShader(sFragment);
 		checkCompileErrors(sFragment, "FRAGMENT");
-		// if geometry shader source code is given, also compile geometry shader
+
 		if (geometrySource != nullptr)
 		{
 			gShader = glCreateShader(GL_GEOMETRY_SHADER);
@@ -66,7 +66,7 @@ namespace Scribble {
 			glCompileShader(gShader);
 			checkCompileErrors(gShader, "GEOMETRY");
 		}
-		// shader program
+
 		this->m_ShaderID = glCreateProgram();
 		glAttachShader(this->m_ShaderID, sVertex);
 		glAttachShader(this->m_ShaderID, sFragment);
@@ -74,7 +74,7 @@ namespace Scribble {
 			glAttachShader(this->m_ShaderID, gShader);
 		glLinkProgram(this->m_ShaderID);
 		checkCompileErrors(this->m_ShaderID, "PROGRAM");
-		// delete the shaders as they're linked into our program now and no longer necessary
+
 		glDeleteShader(sVertex);
 		glDeleteShader(sFragment);
 		if (geometrySource != nullptr)
