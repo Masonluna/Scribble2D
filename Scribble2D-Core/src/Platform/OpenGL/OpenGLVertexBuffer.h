@@ -18,6 +18,7 @@ namespace Scribble {
 		void Unbind() const override { glBindBuffer(GL_ARRAY_BUFFER, 0); }
 		const VertexBufferLayout& GetLayout() const override { return m_Layout; }
 		void SetLayout(const VertexBufferLayout& layout) override { m_Layout = layout; }
+
 	private:
 		unsigned int m_RendererID;
 		VertexBufferLayout m_Layout;

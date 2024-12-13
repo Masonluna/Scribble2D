@@ -72,6 +72,7 @@ namespace Scribble {
 			}
 			return false;
 		}
+
 	private:
 		Event& m_Event;
 	};

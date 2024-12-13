@@ -17,7 +17,6 @@ namespace Scribble {
 		virtual void OnEvent(Event& e) {}
 
 	protected:
-
 		std::string m_DebugName;
 	};
 

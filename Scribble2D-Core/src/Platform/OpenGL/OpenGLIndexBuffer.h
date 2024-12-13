@@ -9,7 +9,6 @@ namespace Scribble {
 	public:
 		OpenGLIndexBuffer(uint32_t* indices, uint32_t count);
 
-
 		~OpenGLIndexBuffer()
 		{
 			glDeleteBuffers(1, &m_RendererID);
@@ -17,8 +16,6 @@ namespace Scribble {
 
 		void Bind() const override { glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_RendererID); }
 		void Unbind() const override { glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0); }
-
-
 
 		const uint32_t GetCount() const { return m_Count; }
 

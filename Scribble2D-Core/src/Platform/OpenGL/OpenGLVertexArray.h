@@ -20,6 +20,7 @@ namespace Scribble {
 
 		const std::vector<std::shared_ptr<IBufferVertex>>& GetVertexBuffers() const override { return m_VertexBuffers; }
 		const std::shared_ptr<IBufferIndex>& GetIndexBuffer() const override { return m_IndexBuffer; }
+
 	private:
 		uint32_t m_RendererID;
 		uint32_t m_VertexBufferIndex = 0;

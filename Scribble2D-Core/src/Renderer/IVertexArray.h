@@ -19,7 +19,6 @@ namespace Scribble {
 		virtual const std::vector<std::shared_ptr<IBufferVertex>>& GetVertexBuffers() const = 0;
 		virtual const std::shared_ptr<IBufferIndex>& GetIndexBuffer() const = 0;
 
-
 		static std::shared_ptr<IVertexArray> Create();
 	};
 

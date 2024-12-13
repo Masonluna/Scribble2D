@@ -10,6 +10,7 @@ namespace Scribble {
 		inline int GetKeyCode() const { return m_KeyCode; }
 
 		EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput)
+
 	protected:
 		KeyEvent(int keycode)
 			: m_KeyCode(keycode)
@@ -34,6 +35,7 @@ namespace Scribble {
 		}
 
 		EVENT_CLASS_TYPE(KeyPressed)
+
 	private:
 		int m_RepeatCount;
 	};
