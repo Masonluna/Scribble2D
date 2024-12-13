@@ -15,6 +15,11 @@ Scribble::OpenGLVertexBuffer::OpenGLVertexBuffer(float* vertices, uint32_t size)
 	glBufferData(GL_ARRAY_BUFFER, size, vertices, GL_STATIC_DRAW);
 }
 
+Scribble::OpenGLVertexBuffer::~OpenGLVertexBuffer()
+{
+	glDeleteBuffers(GL_ARRAY_BUFFER, 0);
+}
+
 void Scribble::OpenGLVertexBuffer::setData(const void* data, uint32_t size)
 {
 	glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
