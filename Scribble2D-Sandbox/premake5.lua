@@ -15,9 +15,10 @@ project "Scribble2D-Sandbox"
 
     includedirs {
         "../Scribble2D-Core",
-        "../Scribble2D-Core/vendor/spdlog/include",
 		"../Scribble2D-Core/src",
-		"../Scribble2D-Core/vendor"
+		"../Scribble2D-Core/vendor",
+        "../Scribble2D-Core/vendor/glm/glm-1.0.1",
+        "../Scribble2D-Core/vendor/spdlog/include"
     }
 
     links {
