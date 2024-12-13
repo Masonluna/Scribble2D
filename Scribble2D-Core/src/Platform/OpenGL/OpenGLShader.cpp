@@ -39,6 +39,12 @@ namespace Scribble {
 		glUniform4f(glGetUniformLocation(this->m_ShaderID, name.c_str()), value.x, value.y, value.z, value.w);
 	}
 
+	void OpenGLShader::SetMat4(const std::string& name, const glm::mat4& value)
+	{
+		this->Bind();
+		glUniformMatrix4fv(glGetUniformLocation(this->m_ShaderID, name.c_str()), 1, false, glm::value_ptr(value));
+	}
+
 	void OpenGLShader::Compile(const char* vertexSource, const char* fragmentSource, const char* geometrySource)
 	{
 		uint32_t sVertex, sFragment, gShader;

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Renderer/Shader.h"
+#include "glm/gtc/type_ptr.hpp"
 #include "glad/glad.h"
 
 namespace Scribble {
@@ -8,6 +9,7 @@ namespace Scribble {
 	class OpenGLShader : public Shader
 	{
 	public:
+		uint32_t m_ShaderID = 0;
 		OpenGLShader() {}
 		~OpenGLShader() = default;
 
@@ -20,13 +22,12 @@ namespace Scribble {
 		void SetFloat2(const std::string& name, const glm::vec2& value) override;
 		void SetFloat3(const std::string& name, const glm::vec3& value) override;
 		void SetFloat4(const std::string& name, const glm::vec4& value) override;
+		void SetMat4(const std::string& name, const glm::mat4& value) override;
 
 
 		void Compile(const char* vertexSource, const char* fragmentSource, const char* geometrySource = nullptr);
 
 	private:
-		uint32_t m_ShaderID = 0;
-
 		void checkCompileErrors(uint32_t object, std::string type);
 	};
 
