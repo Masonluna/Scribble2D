@@ -7,6 +7,7 @@ namespace Scribble {
 	class OpenGLVertexBuffer : public IBufferVertex
 	{
 	public:
+		OpenGLVertexBuffer() = default;
 		OpenGLVertexBuffer(uint32_t size);
 		OpenGLVertexBuffer(float* vertices, uint32_t size);
 		~OpenGLVertexBuffer();
