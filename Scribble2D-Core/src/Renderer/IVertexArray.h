@@ -33,6 +33,12 @@ namespace Scribble {
 			1.0f, 1.0f,		1.0f, 1.0f
 		};
 
+
+		float quadIndices[] = {
+			0, 1, 2,
+			1, 2, 3
+		};
+
 	}
 
 
