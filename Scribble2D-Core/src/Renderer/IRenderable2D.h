@@ -18,12 +18,12 @@ namespace Scribble {
 
 
 		// Quads and Lines
-		virtual void DrawQuad(glm::vec2& pos, float width, float height, float rotate, const glm::vec4& color) = 0;
+		virtual void DrawQuad(const glm::vec2& pos, float width, float height, float rotate, const glm::vec4& color) = 0;
 		//virtual void DrawQuad(glm::vec2& pos, float width, float height, float rotate = 0.0f, Texture2D& texture) = 0;
 
-		virtual void DrawLine(glm::vec2& p1, glm::vec2& p2, const glm::vec4& color, float thickness) = 0;
+		virtual void DrawLine(const glm::vec2& p1, const glm::vec2& p2, const glm::vec4& color, float thickness) = 0;
 
-		virtual void DrawString(const std::string& text, glm::vec2& pos, float scale, const glm::vec4& color) = 0;
+		virtual void DrawString(const std::string& text, const glm::vec2& pos, float scale, const glm::vec4& color) = 0;
 
 		// Batch Rendering
 		//virtual void BeginBatch() = 0;

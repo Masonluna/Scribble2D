@@ -5,6 +5,55 @@
 
 namespace Scribble {
 
+	enum class Shapes
+	{
+		None = 0, \
+		TriangleEq = 1,
+		TriangleIso = 2,
+		TriangleRight = 3,
+		Quad = 4
+	};
+		
+
+	// TODO: Create coordinate systems for each shape type
+	namespace Coords {
+
+
+		// This is not an accurate equilateral triangle.
+		// V1 Position: (0.5f, 1- sqrt(3)/2)
+		float eqTriangleVertices[] = {
+			// Position							// Texture
+			0.5f, (1.0f - (sqrt(3.0f) / 2.0f)),	0.5f, (1.0f - (sqrt(3.0f) / 2.0f)),
+			0.0f, 1.0f,							0.0f, 1.0f,
+			1.0f, 1.0f,							1.0f, 1.0f
+
+		};
+
+		float isoTriangleVertices[] = {
+			// Position		// Texture
+			0.5f, 0.0f,		0.5f, 0.0f,
+			0.0f, 1.0f,		0.0f, 1.0f,
+			1.0f, 1.0f,		1.0f, 1.0f
+		};
+
+		float rightTriangleVertices[] = {
+			// Position		// Texture
+			0.0f, 0.0f,		0.0f, 0.0f,
+			0.0f, 1.0f,		0.0f, 1.0f,
+			1.0f, 1.0f,		1.0f, 1.0f
+		};
+
+		float quadVertices[] = {
+			// Position		// Texture
+			0.0f, 0.0f,		0.0f, 0.0f,
+			1.0f, 0.0f,		1.0f, 0.0f,
+			0.0f, 1.0f,		0.0f, 1.0f,
+			1.0f, 1.0f,		1.0f, 1.0f
+		};
+
+	}
+
+
 	class IVertexArray
 	{
 	public:
