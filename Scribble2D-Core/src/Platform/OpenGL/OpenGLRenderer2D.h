@@ -28,7 +28,6 @@ namespace Scribble {
 	private:
 		OpenGLShader m_Shader;
 		OpenGLVertexArray m_VertexArray;
-		std::unordered_map<Shapes, OpenGLVertexBuffer> m_VertexBuffers;
 	};
 
 }

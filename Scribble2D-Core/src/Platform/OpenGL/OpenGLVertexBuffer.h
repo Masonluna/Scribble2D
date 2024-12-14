@@ -21,7 +21,7 @@ namespace Scribble {
 		void SetLayout(const VertexBufferLayout& layout) override { m_Layout = layout; }
 
 	private:
-		unsigned int m_RendererID;
+		unsigned int m_RendererID = 0;
 		VertexBufferLayout m_Layout;
 	};
 }

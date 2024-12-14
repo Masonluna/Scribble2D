@@ -29,7 +29,6 @@ namespace Scribble {
 
 		model = glm::scale(model, glm::vec3(size, 1.0f)); // Scale
 
-		m_VertexBuffers[Shapes::Quad].Bind();
 
 
 	}
