@@ -9,6 +9,21 @@ namespace Scribble {
 	void OpenGLRenderer2D::Init()
 	{
 
+		// ======== Initialize Render Data ========
+		// ========================================
+		m_VertexArray = OpenGLVertexArray();
+
+
+		// Vertex Buffers
+		m_VertexBuffers[Shapes::Triangle] = OpenGLVertexBuffer(Coords::triangleVertices, sizeof(Coords::triangleVertices));
+		m_VertexBuffers[Shapes::Quad] = OpenGLVertexBuffer(Coords::quadVertices, sizeof(Coords::quadVertices));
+
+		// Index Buffers 
+		m_IndexBuffers[Shapes::Quad] = OpenGLIndexBuffer(Coords::quadIndices, sizeof(Coords::quadIndices));
+
+
+
+
 	}
 
 	void OpenGLRenderer2D::Clear()
@@ -31,6 +46,11 @@ namespace Scribble {
 
 
 
+
+		m_VertexArray.AddBuffer(m_VertexBuffers[Shapes::Quad], m_VertexBuffers[Shapes::Quad].GetLayout());
+		m_IndexBuffers[Shapes::Quad].Bind();
+
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	}
 
 	void OpenGLRenderer2D::DrawTriangle(const glm::vec2& pos, float scale, float rotate, const glm::vec4& color)

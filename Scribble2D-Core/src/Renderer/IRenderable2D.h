@@ -4,6 +4,16 @@
 
 namespace Scribble {
 
+	enum class Shapes
+	{
+		None = 0,
+		Triangle = 1,
+		Quad = 2
+	};
+
+
+
+
 	class IRenderable2D
 	{
 	public:

@@ -9,6 +9,9 @@ namespace Scribble {
 	//std::map<std::string, OpenGLTexture2D>    OpenGLResourceManager::s_Textures;
 	std::map<std::string, OpenGLShader>       OpenGLResourceManager::s_Shaders;
 
+	void OpenGLResourceManager::InitializeShaders()
+	{}
+
 	OpenGLShader OpenGLResourceManager::LoadShader(const char* vShaderFile, const char* fShaderFile, const char* gShaderFile, std::string name)
 	{
 		s_Shaders[name] = LoadShaderFromFile(vShaderFile, fShaderFile, gShaderFile);

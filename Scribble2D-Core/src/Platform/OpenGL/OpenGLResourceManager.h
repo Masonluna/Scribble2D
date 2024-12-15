@@ -14,6 +14,9 @@ namespace Scribble {
 		static std::map<std::string, OpenGLShader> s_Shaders;
 		//static std::map<std::string, OpenGLTexture2D> s_Textures;
 
+
+		static void InitializeShaders();
+
 		static OpenGLShader LoadShader(const char* vShaderFile, const char* fShaderFile, const char* gShaderFile, std::string name);
 		static OpenGLShader GetShader(std::string name);
 

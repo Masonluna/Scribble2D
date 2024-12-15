@@ -8,6 +8,33 @@
 
 namespace Scribble {
 	
+	// TODO: Create coordinate systems for each shape type
+	namespace Coords {
+
+		float triangleVertices[] = {
+			// Position		// Texture
+			0.5f, 0.0f,		0.5f, 0.0f,
+			0.0f, 1.0f,		0.0f, 1.0f,
+			1.0f, 1.0f,		1.0f, 1.0f
+		};
+
+
+		float quadVertices[] = {
+			// Position		// Texture
+			0.0f, 0.0f,		0.0f, 0.0f,
+			1.0f, 0.0f,		1.0f, 0.0f,
+			0.0f, 1.0f,		0.0f, 1.0f,
+			1.0f, 1.0f,		1.0f, 1.0f
+		};
+
+
+		uint32_t quadIndices[] = {
+			0, 1, 2,
+			1, 2, 3
+		};
+
+	}
+
 	class OpenGLRenderer2D : public IRenderable2D
 	{
 
@@ -28,6 +55,10 @@ namespace Scribble {
 	private:
 		OpenGLShader m_Shader;
 		OpenGLVertexArray m_VertexArray;
+
+		// Unordered Map is not guaranteed to be useful here. But in the event I add more polygons, I want to future proof this class.
+		std::unordered_map<Shapes, OpenGLVertexBuffer> m_VertexBuffers;
+		std::unordered_map<Shapes, OpenGLIndexBuffer> m_IndexBuffers;
 	};
 
 }

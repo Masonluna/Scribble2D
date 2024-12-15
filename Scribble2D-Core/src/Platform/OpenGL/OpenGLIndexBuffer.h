@@ -7,6 +7,7 @@ namespace Scribble {
 	class OpenGLIndexBuffer : public IBufferIndex
 	{
 	public:
+		OpenGLIndexBuffer() = default;
 		OpenGLIndexBuffer(uint32_t* indices, uint32_t count);
 
 		~OpenGLIndexBuffer()

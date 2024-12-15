@@ -24,5 +24,16 @@ namespace Scribble {
 		glBindVertexArray(0);
 	}
 
-	
+	void OpenGLVertexArray::AddBuffer(const OpenGLVertexBuffer& vb, const VertexBufferLayout& layout)
+	{
+		Bind();
+		vb.Bind();
+		const auto& elements = layout.GetElements();
+		unsigned int offset = 0;
+		for (int i = 0; i < elements.size(); i++) {
+			const auto& element = elements[i];
+			glEnableVertexAttribArray(i);
+			glVertexAttribPointer(i, element.Size, ShaderDataTypeSize(element.Type), element.Normalized, layout.GetStride(), (const void*)element.Offset);
+		}
+	}
 }
