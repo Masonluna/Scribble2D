@@ -31,12 +31,12 @@ project "Scribble2D-Sandbox"
         defines { "SCRIBBLE_CORE_PLATFORM_WINDOWS" }
 
     filter "configurations:Debug"
-        defines "SCRIBBLE_DEBUG"
+        defines "SCRIBBLE_APP_DEBUG"
         runtime "Debug"
         symbols "on"
 
     filter "configurations:Release"
-        defines "SCRIBBLE_RELEEASE"
+        defines "SCRIBBLE_APP_RELEEASE"
         runtime "Release"
         optimize "on"
 

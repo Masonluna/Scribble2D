@@ -22,14 +22,31 @@ namespace Scribble {
 
 }
 
+
+#ifdef CORE_DEBUG
 #define SCB_CORE_ERROR(...) ::Scribble::Log::GetCoreLogger()->error(__VA_ARGS__)
 #define SCB_CORE_TRACE(...) ::Scribble::Log::GetCoreLogger()->trace(__VA_ARGS__)
 #define SCB_CORE_INFO(...)  ::Scribble::Log::GetCoreLogger()->info(__VA_ARGS__)
 #define SCB_CORE_WARN(...)  ::Scribble::Log::GetCoreLogger()->warn(__VA_ARGS__)
 #define SCB_CORE_FATAL(...) ::Scribble::Log::GetCoreLogger()->critical(__VA_ARGS__)
-		  
+#else
+#define SCB_CORE_ERROR(...)
+#define SCB_CORE_TRACE(...)
+#define SCB_CORE_INFO(...) 
+#define SCB_CORE_WARN(...) 
+#define SCB_CORE_FATAL(...)
+#endif
+
+#ifdef SCRIBBLE_APP_DEBUG
 #define SCB_ERROR(...) ::Scribble::Log::GetClientLogger()->error(__VA_ARGS__)
 #define SCB_TRACE(...) ::Scribble::Log::GetClientLogger()->trace(__VA_ARGS__)
 #define SCB_INFO(...)  ::Scribble::Log::GetClientLogger()->info(__VA_ARGS__)
 #define SCB_WARN(...)  ::Scribble::Log::GetClientLogger()->warn(__VA_ARGS__)
 #define SCB_FATAL(...) ::Scribble::Log::GetClientLogger()->critical(__VA_ARGS__)
+#else
+#define SCB_ERROR(...) 
+#define SCB_TRACE(...) 
+#define SCB_INFO(...)  
+#define SCB_WARN(...)  
+#define SCB_FATAL(...) 
+#endif
