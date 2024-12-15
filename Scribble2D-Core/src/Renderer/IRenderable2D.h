@@ -33,15 +33,9 @@ namespace Scribble {
 		virtual void DrawTriangle(const glm::vec2& pos, float scale, float rotate, const glm::vec4& color) = 0;
 
 
-
 		virtual void DrawLine(const glm::vec2& p1, const glm::vec2& p2, const glm::vec4& color, float thickness) = 0;
 
 		virtual void DrawString(const std::string& text, const glm::vec2& pos, float scale, const glm::vec4& color) = 0;
-
-		// Batch Rendering
-		//virtual void BeginBatch() = 0;
-		//virtual void EndBatch() = 0;
-		//virtual void Flush() = 0;
 	};
 
 }

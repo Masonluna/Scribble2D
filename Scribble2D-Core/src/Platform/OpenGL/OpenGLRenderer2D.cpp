@@ -44,11 +44,11 @@ namespace Scribble {
 
 		model = glm::scale(model, glm::vec3(size, 1.0f)); // Scale
 
-
-
-
 		m_VertexArray.AddBuffer(m_VertexBuffers[Shapes::Quad], m_VertexBuffers[Shapes::Quad].GetLayout());
 		m_IndexBuffers[Shapes::Quad].Bind();
+
+		m_SolidShader.SetMat4("model", model);
+		m_SolidShader.SetFloat3("spriteColor", color);
 
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	}

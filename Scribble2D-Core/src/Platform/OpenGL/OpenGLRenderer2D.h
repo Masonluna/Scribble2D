@@ -53,7 +53,8 @@ namespace Scribble {
 		void DrawString(const std::string& text, const glm::vec2& pos, float scale, const glm::vec4& color) override;
 
 	private:
-		OpenGLShader m_Shader;
+		OpenGLShader m_TexturedShader;
+		OpenGLShader m_SolidShader;
 		OpenGLVertexArray m_VertexArray;
 
 		// Unordered Map is not guaranteed to be useful here. But in the event I add more polygons, I want to future proof this class.
