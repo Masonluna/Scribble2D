@@ -39,6 +39,7 @@ namespace Scribble {
 	{
 
 	public:
+		OpenGLRenderer2D() = default;
 		void Init();
 
 		void SetClearColor(const glm::vec4& color) override { glClearColor(color.r, color.g, color.b, color.a); };

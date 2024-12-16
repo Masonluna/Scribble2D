@@ -25,7 +25,8 @@ namespace Scribble {
 		case ShaderDataType::Bool:     return 1;
 		}
 
-		SCB_CORE_ASSERT(false, "Unknown ShaderDataType")
+		SCB_CORE_ASSERT(false, "Unknown ShaderDataType");
+		return 0;
 	}
 
 	struct BufferElement
