@@ -1,24 +1,24 @@
 #include "scbpch.h"
-#include "OpenGLResourceManager.h"
+#include "ResourceManager.h"
 #include "glad/glad.h"
 #include "Vendor/stb_image.h"
-#include <Platform/OpenGL/OpenGLShader.h>
+#include "Shader.h"
 
 
 namespace Scribble {
-	//std::map<std::string, OpenGLTexture2D>    OpenGLResourceManager::s_Textures;
-	std::map<std::string, OpenGLShader>       OpenGLResourceManager::s_Shaders;
+	//std::map<std::string, Texture2D>    ResourceManager::s_Textures;
+	std::map<std::string, Shader>       ResourceManager::s_Shaders;
 
-	void OpenGLResourceManager::InitializeShaders()
+	void ResourceManager::InitializeShaders()
 	{}
 
-	OpenGLShader OpenGLResourceManager::LoadShader(const char* vShaderFile, const char* fShaderFile, const char* gShaderFile, std::string name)
+	Shader ResourceManager::LoadShader(const char* vShaderFile, const char* fShaderFile, const char* gShaderFile, std::string name)
 	{
 		s_Shaders[name] = LoadShaderFromFile(vShaderFile, fShaderFile, gShaderFile);
 		return s_Shaders[name];
 	}
 
-	OpenGLShader OpenGLResourceManager::GetShader(std::string name)
+	Shader ResourceManager::GetShader(std::string name)
 	{
 		return s_Shaders[name];
 	}
@@ -34,7 +34,7 @@ namespace Scribble {
 		return s_Textures[name];
 	}*/
 
-	void OpenGLResourceManager::Clear()
+	void ResourceManager::Clear()
 	{
 		for (auto i : s_Shaders)
 			glDeleteProgram(i.second.m_ShaderID);
@@ -45,7 +45,7 @@ namespace Scribble {
 
 
 
-	OpenGLShader OpenGLResourceManager::LoadShaderFromFile(const char* vShaderFile, const char* fShaderFile, const char* gShaderFile)
+	Shader ResourceManager::LoadShaderFromFile(const char* vShaderFile, const char* fShaderFile, const char* gShaderFile)
 	{
 		std::string vertexCode;
 		std::string fragmentCode;
@@ -83,7 +83,7 @@ namespace Scribble {
 		const char* fShaderCode = fragmentCode.c_str();
 		const char* gShaderCode = geometryCode.c_str();
 
-		OpenGLShader shader;
+		Shader shader;
 		shader.Compile(vShaderCode, fShaderCode, gShaderFile != nullptr ? gShaderCode : nullptr);
 		return shader;
 	}

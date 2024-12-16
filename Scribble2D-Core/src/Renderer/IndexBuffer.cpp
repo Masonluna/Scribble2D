@@ -1,7 +1,7 @@
 #include "scbpch.h"
-#include "OpenGLIndexBuffer.h"
+#include "IndexBuffer.h"
 
-Scribble::OpenGLIndexBuffer::OpenGLIndexBuffer(uint32_t* indices, uint32_t count)
+Scribble::IndexBuffer::IndexBuffer(uint32_t* indices, uint32_t count)
 	: m_Count(count)
 {
 	glCreateBuffers(1, &m_RendererID);

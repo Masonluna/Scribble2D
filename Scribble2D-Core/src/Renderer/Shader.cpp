@@ -1,51 +1,51 @@
 #include "scbpch.h"
-#include "OpenGLShader.h"
+#include "Shader.h"
 
 namespace Scribble {
 
-	void OpenGLShader::SetInt(const std::string& name, int value)
+	void Shader::SetInt(const std::string& name, int value)
 	{
 		this->Bind();
 		glUniform1i(glGetUniformLocation(this->m_ShaderID, name.c_str()), value);
 	}
 
-	void OpenGLShader::SetIntArray(const std::string& name, int* values, uint32_t count)
+	void Shader::SetIntArray(const std::string& name, int* values, uint32_t count)
 	{
 		this->Bind();
 		glUniform1iv(glGetUniformLocation(this->m_ShaderID, name.c_str()), count, values);
 	}
 
-	void OpenGLShader::SetFloat(const std::string& name, float value)
+	void Shader::SetFloat(const std::string& name, float value)
 	{
 		this->Bind();
 		glUniform1f(glGetUniformLocation(this->m_ShaderID, name.c_str()), value);
 	}
 
-	void OpenGLShader::SetFloat2(const std::string& name, const glm::vec2& value)
+	void Shader::SetFloat2(const std::string& name, const glm::vec2& value)
 	{
 		this->Bind();
 		glUniform2f(glGetUniformLocation(this->m_ShaderID, name.c_str()), value.x, value.y);
 	}
 
-	void OpenGLShader::SetFloat3(const std::string& name, const glm::vec3& value)
+	void Shader::SetFloat3(const std::string& name, const glm::vec3& value)
 	{
 		this->Bind();
 		glUniform3f(glGetUniformLocation(this->m_ShaderID, name.c_str()), value.x, value.y, value.z);
 	}
 
-	void OpenGLShader::SetFloat4(const std::string& name, const glm::vec4& value)
+	void Shader::SetFloat4(const std::string& name, const glm::vec4& value)
 	{
 		this->Bind();
 		glUniform4f(glGetUniformLocation(this->m_ShaderID, name.c_str()), value.x, value.y, value.z, value.w);
 	}
 
-	void OpenGLShader::SetMat4(const std::string& name, const glm::mat4& value)
+	void Shader::SetMat4(const std::string& name, const glm::mat4& value)
 	{
 		this->Bind();
 		glUniformMatrix4fv(glGetUniformLocation(this->m_ShaderID, name.c_str()), 1, false, glm::value_ptr(value));
 	}
 
-	void OpenGLShader::Compile(const char* vertexSource, const char* fragmentSource, const char* geometrySource)
+	void Shader::Compile(const char* vertexSource, const char* fragmentSource, const char* geometrySource)
 	{
 		uint32_t sVertex, sFragment, gShader;
 
@@ -81,7 +81,7 @@ namespace Scribble {
 			glDeleteShader(gShader);
 	}
 
-	void OpenGLShader::checkCompileErrors(uint32_t object, std::string type)
+	void Shader::checkCompileErrors(uint32_t object, std::string type)
 	{
 		int success;
 		char infoLog[1024];

@@ -1,30 +1,30 @@
 #include "scbpch.h"
-#include "OpenGLVertexArray.h"
+#include "VertexArray.h"
 
 namespace Scribble {
 
 
-	OpenGLVertexArray::OpenGLVertexArray()
+	VertexArray::VertexArray()
 	{
 		glCreateVertexArrays(1, &m_RendererID);
 	}
 
-	OpenGLVertexArray::~OpenGLVertexArray()
+	VertexArray::~VertexArray()
 	{
 		glDeleteVertexArrays(1, &m_RendererID);
 	}
 
-	void OpenGLVertexArray::Bind() const
+	void VertexArray::Bind() const
 	{
 		glBindVertexArray(m_RendererID);
 	}
 
-	void OpenGLVertexArray::Unbind() const
+	void VertexArray::Unbind() const
 	{
 		glBindVertexArray(0);
 	}
 
-	void OpenGLVertexArray::AddBuffer(const OpenGLVertexBuffer& vb, const VertexBufferLayout& layout)
+	void VertexArray::AddBuffer(const VertexBuffer& vb, const VertexBufferLayout& layout)
 	{
 		Bind();
 		vb.Bind();

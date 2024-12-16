@@ -1,29 +1,35 @@
 #pragma once
 
+#include "glm/gtc/type_ptr.hpp"
+#include "glad/glad.h"
 #include <string>
-#include <glm/glm.hpp>
 
 namespace Scribble {
 
 	class Shader
 	{
 	public:
-		virtual ~Shader() = default;
+		uint32_t m_ShaderID = 0;
+		Shader() {}
+		~Shader() = default;
 
-		virtual void Bind() const = 0;
-		virtual void Unbind() const = 0;
+		void Bind() const { glUseProgram(m_ShaderID); }
+		void Unbind() const { glUseProgram(0); }
 
-		virtual void SetInt(const std::string& name, int value) = 0;
-		virtual void SetIntArray(const std::string& name, int* values, uint32_t count) = 0;
-		virtual void SetFloat(const std::string& name, float value) = 0;
-		virtual void SetFloat2(const std::string& name, const glm::vec2& value) = 0;
-		virtual void SetFloat3(const std::string& name, const glm::vec3& value) = 0;
-		virtual void SetFloat4(const std::string& name, const glm::vec4& value) = 0;
-		virtual void SetMat4(const std::string& name, const glm::mat4& value) = 0;
-
-		virtual void Compile(const char* vertexSource, const char* fragmentSource, const char* geometrySource = nullptr) = 0;
+		void SetInt(const std::string& name, int value);
+		void SetIntArray(const std::string& name, int* values, uint32_t count);
+		void SetFloat(const std::string& name, float value);
+		void SetFloat2(const std::string& name, const glm::vec2& value);
+		void SetFloat3(const std::string& name, const glm::vec3& value);
+		void SetFloat4(const std::string& name, const glm::vec4& value);
+		void SetMat4(const std::string& name, const glm::mat4& value);
 
 
+		void Compile(const char* vertexSource, const char* fragmentSource, const char* geometrySource = nullptr);
+
+	private:
+		void checkCompileErrors(uint32_t object, std::string type);
 	};
 
 }
+
