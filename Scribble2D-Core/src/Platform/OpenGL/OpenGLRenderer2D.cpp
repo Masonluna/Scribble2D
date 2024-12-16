@@ -15,13 +15,19 @@ namespace Scribble {
 
 
 		// Vertex Buffers
-		m_VertexBuffers[Shapes::Triangle] = OpenGLVertexBuffer(Coords::triangleVertices, sizeof(Coords::triangleVertices));
-		m_VertexBuffers[Shapes::Quad] = OpenGLVertexBuffer(Coords::quadVertices, sizeof(Coords::quadVertices));
+		m_VertexBuffers[Shapes::Triangle] = OpenGLVertexBuffer(VertexData::triangleVertices, sizeof(VertexData::triangleVertices));
+		m_VertexBuffers[Shapes::Quad] = OpenGLVertexBuffer(VertexData::quadVertices, sizeof(VertexData::quadVertices));
 
 		// Index Buffers 
-		m_IndexBuffers[Shapes::Quad] = OpenGLIndexBuffer(Coords::quadIndices, sizeof(Coords::quadIndices));
+		m_IndexBuffers[Shapes::Quad] = OpenGLIndexBuffer(VertexData::quadIndices, sizeof(VertexData::quadIndices));
 
+		// Set Vertex Buffer Layout
+		VertexBufferLayout layout = {
+			{Scribble::ShaderDataType::Float2, "a_Position"},
+			{Scribble::ShaderDataType::Float2, "a_TexCoords"}
+		};
 
+		m_VertexBuffers[Shapes::Quad].SetLayout(layout);
 
 
 	}

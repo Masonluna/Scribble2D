@@ -9,7 +9,7 @@
 namespace Scribble {
 	
 	// TODO: Create coordinate systems for each shape type
-	namespace Coords {
+	namespace VertexData {
 
 		float triangleVertices[] = {
 			// Position		// Texture
