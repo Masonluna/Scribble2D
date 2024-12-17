@@ -12,8 +12,6 @@ namespace Scribble {
 		VertexBuffer(float* vertices, uint32_t size);
 		~VertexBuffer();
 
-		void setData(const void* data, uint32_t size);
-
 
 		void Bind() const { glBindBuffer(GL_ARRAY_BUFFER, m_RendererID); }
 		void Unbind() const { glBindBuffer(GL_ARRAY_BUFFER, 0); }

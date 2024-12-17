@@ -11,8 +11,6 @@ namespace Scribble {
 	class ResourceManager
 	{
 	public:
-		static std::map<std::string, Shader> s_Shaders;
-		//static std::map<std::string, Texture2D> s_Textures;
 
 
 		static void InitializeShaders();
@@ -26,6 +24,8 @@ namespace Scribble {
 		static void Clear();
 	private:
 		ResourceManager() {}
+		static std::map<std::string, Shader> s_Shaders;
+		//static std::map<std::string, Texture2D> s_Textures;
 		static Shader LoadShaderFromFile(const char* vShaderFile, const char* fShaderFile, const char* gShaderFIle = nullptr);
 		//static Texture2D LoadTextureFromFile(const char* file, bool alpha);
 	};

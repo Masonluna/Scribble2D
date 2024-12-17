@@ -11,7 +11,8 @@ namespace Scribble {
 
 		~IndexBuffer()
 		{
-			glDeleteBuffers(1, &m_RendererID);
+			if (m_RendererID != 0)
+				glDeleteBuffers(1, &m_RendererID);
 		}
 
 		void Bind() const { glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_RendererID); }

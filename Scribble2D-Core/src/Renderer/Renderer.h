@@ -8,9 +8,10 @@
 namespace Scribble {
 	
 	// TODO: Create coordinate systems for each shape type
-	namespace VertexData {
+	struct VertexData
+	{
 
-		float triangleVertices[] = {
+		float triangleVertices[12] = {
 			// Position		// Texture
 			0.5f, 0.0f,		0.5f, 0.0f,
 			0.0f, 1.0f,		0.0f, 1.0f,
@@ -18,7 +19,7 @@ namespace Scribble {
 		};
 
 
-		float quadVertices[] = {
+		float quadVertices[16] = {
 			// Position		// Texture
 			0.0f, 0.0f,		0.0f, 0.0f,
 			1.0f, 0.0f,		1.0f, 0.0f,
@@ -27,12 +28,12 @@ namespace Scribble {
 		};
 
 
-		uint32_t quadIndices[] = {
+		uint32_t quadIndices[6] = {
 			0, 1, 2,
 			1, 2, 3
 		};
 
-	}
+	};
 
 
 	enum class Shapes
@@ -65,7 +66,7 @@ namespace Scribble {
 		Shader m_TexturedShader;
 		Shader m_SolidShader;
 		VertexArray m_VertexArray;
-
+		VertexData m_VertexData;
 		// Unordered Map is not guaranteed to be useful here. But in the event I add more polygons, I want to future proof this class.
 		std::unordered_map<Shapes, VertexBuffer> m_VertexBuffers;
 		std::unordered_map<Shapes, IndexBuffer> m_IndexBuffers;

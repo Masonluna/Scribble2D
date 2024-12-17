@@ -5,13 +5,18 @@ namespace Scribble {
 
 
 	VertexArray::VertexArray()
-	{
-		glCreateVertexArrays(1, &m_RendererID);
-	}
+	{}
 
 	VertexArray::~VertexArray()
 	{
-		glDeleteVertexArrays(1, &m_RendererID);
+		if (m_RendererID != 0)
+			glDeleteVertexArrays(1, &m_RendererID);
+	}
+
+	void VertexArray::Init()
+	{
+		glGenVertexArrays(1, &m_RendererID);
+		glBindVertexArray(m_RendererID);
 	}
 
 	void VertexArray::Bind() const
@@ -33,7 +38,8 @@ namespace Scribble {
 		for (int i = 0; i < elements.size(); i++) {
 			const auto& element = elements[i];
 			glEnableVertexAttribArray(i);
-			glVertexAttribPointer(i, element.Size, ShaderDataTypeSize(element.Type), element.Normalized, layout.GetStride(), (const void*)element.Offset);
+			glVertexAttribPointer(i, element.GetComponentCount(), GL_FLOAT, element.Normalized, layout.GetStride(), (const void*)element.Offset);
+
 		}
 	}
 }

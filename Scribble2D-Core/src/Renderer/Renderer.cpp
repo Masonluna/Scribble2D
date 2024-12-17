@@ -1,9 +1,9 @@
 #include "scbpch.h"
 #include "Renderer.h"
+#include "ResourceManager.h"
+
 #include "glm/gtc/matrix_transform.hpp"
-
 namespace Scribble {
-
 
 
 	void Renderer::Init()
@@ -11,15 +11,20 @@ namespace Scribble {
 
 		// ======== Initialize Render Data ========
 		// ========================================
-		m_VertexArray = VertexArray();
-
+		m_VertexArray.Init();
 
 		// Vertex Buffers
-		m_VertexBuffers[Shapes::Triangle] = VertexBuffer(VertexData::triangleVertices, sizeof(VertexData::triangleVertices));
-		m_VertexBuffers[Shapes::Quad] = VertexBuffer(VertexData::quadVertices, sizeof(VertexData::quadVertices));
+		m_VertexBuffers.emplace(Shapes::Triangle, VertexBuffer(m_VertexData.triangleVertices, sizeof(VertexData::triangleVertices)));
+
+		// TODO: Figure out why it's reusing 1 as a renderer ID.
+		m_VertexBuffers.emplace(Shapes::Quad, VertexBuffer(m_VertexData.quadVertices, sizeof(VertexData::quadVertices)));
 
 		// Index Buffers 
-		m_IndexBuffers[Shapes::Quad] = IndexBuffer(VertexData::quadIndices, sizeof(VertexData::quadIndices));
+		m_IndexBuffers.emplace(Shapes::Quad, IndexBuffer(m_VertexData.quadIndices, sizeof(VertexData::quadIndices)));
+		m_VertexBuffers[Shapes::Quad].Bind();
+		GLint vboSize = 0;
+		glGetBufferParameteriv(GL_ARRAY_BUFFER, GL_BUFFER_SIZE, &vboSize);
+		SCB_CORE_INFO("Vertex Buffer Size: {0} bytes", vboSize);
 
 		// Set Vertex Buffer Layout
 		VertexBufferLayout layout = {
@@ -29,7 +34,11 @@ namespace Scribble {
 
 		m_VertexBuffers[Shapes::Quad].SetLayout(layout);
 
-
+		// ======== Initialize Shaders ============
+		// ========================================
+		ResourceManager::InitializeShaders();
+		m_SolidShader =    ResourceManager::GetShader("solidShader");
+		m_TexturedShader = ResourceManager::GetShader("texShader");
 	}
 
 	void Renderer::Clear()
@@ -39,7 +48,7 @@ namespace Scribble {
 
 	void Renderer::DrawQuad(const glm::vec2& pos, const glm::vec2& size, float rotate, const glm::vec4& color)
 	{
-		//this->m_Shader.Use();
+
 		// Go in REVERSE ORDER: Transform, then rotate, then scale
 		glm::mat4 model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(pos, 0.0f)); // Transform 
@@ -50,13 +59,20 @@ namespace Scribble {
 
 		model = glm::scale(model, glm::vec3(size, 1.0f)); // Scale
 
+		this->m_SolidShader.Bind();
 		m_VertexArray.AddBuffer(m_VertexBuffers[Shapes::Quad], m_VertexBuffers[Shapes::Quad].GetLayout());
+		m_VertexBuffers[Shapes::Quad].Bind();
 		m_IndexBuffers[Shapes::Quad].Bind();
 
 		m_SolidShader.SetMat4("model", model);
-		m_SolidShader.SetFloat3("spriteColor", color);
+		m_SolidShader.SetFloat4("spriteColor", color);
 
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		GLenum error = glGetError();
+		if (error != GL_NO_ERROR) {
+			SCB_CORE_ERROR("OpenGL Error: {0}", error);
+		}
+
 	}
 
 	void Renderer::DrawTriangle(const glm::vec2& pos, float scale, float rotate, const glm::vec4& color)

@@ -10,7 +10,11 @@ namespace Scribble {
 	std::map<std::string, Shader>       ResourceManager::s_Shaders;
 
 	void ResourceManager::InitializeShaders()
-	{}
+	{
+		LoadShader("../Scribble2D-Core/res/Shaders/renderer.vs.glsl", "../Scribble2D-Core/res/Shaders/renderer_col_sprite.fs.glsl", nullptr, "solidShader");
+		LoadShader("../Scribble2D-Core/res/Shaders/renderer.vs.glsl", "../Scribble2D-Core/res/Shaders/renderer_tex_sprite.fs.glsl", nullptr, "texShader");
+
+	}
 
 	Shader ResourceManager::LoadShader(const char* vShaderFile, const char* fShaderFile, const char* gShaderFile, std::string name)
 	{
@@ -20,6 +24,9 @@ namespace Scribble {
 
 	Shader ResourceManager::GetShader(std::string name)
 	{
+		if (s_Shaders.find(name) == s_Shaders.end()) {
+			SCB_CORE_FATAL("Shader {0} does not exist", name);
+		}
 		return s_Shaders[name];
 	}
 

@@ -28,7 +28,7 @@ namespace Scribble {
 		void Compile(const char* vertexSource, const char* fragmentSource, const char* geometrySource = nullptr);
 
 	private:
-		void checkCompileErrors(uint32_t object, std::string type);
+		bool checkCompileErrors(uint32_t object, std::string type);
 	};
 
 }

@@ -9,7 +9,8 @@
 namespace Scribble {
 
 	static bool s_GLFWInitialized = false;
-
+	void GLAPIENTRY MessageCallback(GLenum source, GLenum type, GLuint id, GLenum severity,
+		GLsizei length, const GLchar* message, const void* userParam);
 	static void GLFWErrorCallback(int error, const char* description)
 	{
 		SCB_CORE_ERROR("GLFW Error {0}, {1}", error, description);
@@ -23,6 +24,9 @@ namespace Scribble {
 	WindowsWindow::WindowsWindow(const WindowSpecs& specs)
 	{
 		Init(specs);
+		if (!glfwGetCurrentContext()) {
+			SCB_CORE_FATAL("NO CURRENT CONTEXT");
+		}
 	}
 
 	WindowsWindow::~WindowsWindow()
@@ -52,6 +56,11 @@ namespace Scribble {
 
 		m_Context = std::make_unique<RenderContext>(m_Window);
 		m_Context->Init();
+#ifdef CORE_DEBUG
+		glEnable(GL_DEBUG_OUTPUT);
+		glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
+		glDebugMessageCallback(MessageCallback, 0);
+#endif
 
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
@@ -194,5 +203,17 @@ namespace Scribble {
 	bool WindowsWindow::IsVSync() const
 	{
 		return m_Data.VSync;
+	}
+
+	void GLAPIENTRY MessageCallback(GLenum source, GLenum type, GLuint id, GLenum severity,
+		GLsizei length, const GLchar* message, const void* userParam)
+	{
+		SCB_CORE_ERROR("OpenGL Debug Message:");
+		SCB_CORE_ERROR("Source: {0}", source);
+		SCB_CORE_ERROR("Type: {0}", type);
+		SCB_CORE_ERROR("ID: {0}", id);
+		SCB_CORE_ERROR("Severity: {0}", severity);
+		SCB_CORE_ERROR("Message: {0}", message);
+
 	}
 }

@@ -1,5 +1,5 @@
 #include "scbpch.h"
-
+#include "Renderer/ResourceManager.h"
 #include "Application.h"
 #include <glad/glad.h>
 
@@ -9,8 +9,11 @@ namespace Scribble {
 
 	Application::Application()
 	{
+		// Set up window and GLFW context.
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FUNC(OnEvent));
+
+
 	}
 	
 	Application::~Application()
@@ -19,17 +22,18 @@ namespace Scribble {
 	void Application::Run()
 	{
 		 SCB_INFO("Hello, Application!");
-
 		 while (m_Running) {
-			 // GL stuff
-			 glClearColor(1, 0, 1, 1);
+			 glClearColor(0, 0, 0, 1);
 			 glClear(GL_COLOR_BUFFER_BIT);
+
 
 			 for (Layer* layer : m_LayerStack) {
 				 layer->OnUpdate();
 			 }
-		 
+
+
 			 m_Window->OnUpdate();
+
 		 }
 	}
 
@@ -39,7 +43,7 @@ namespace Scribble {
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FUNC(OnWindowClose));
 
 
-		SCB_CORE_TRACE("{0}", e);
+		//SCB_CORE_TRACE("{0}", e);
 
 
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();) {

@@ -11,6 +11,8 @@ namespace Scribble {
 		VertexArray();
 		~VertexArray();
 
+		void Init();
+
 		void Bind() const;
 		void Unbind() const;
 

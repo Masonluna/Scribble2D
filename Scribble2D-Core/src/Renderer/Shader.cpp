@@ -1,6 +1,7 @@
 #include "scbpch.h"
 #include "Shader.h"
 
+
 namespace Scribble {
 
 	void Shader::SetInt(const std::string& name, int value)
@@ -52,28 +53,35 @@ namespace Scribble {
 		sVertex = glCreateShader(GL_VERTEX_SHADER);
 		glShaderSource(sVertex, 1, &vertexSource, NULL);
 		glCompileShader(sVertex);
-		checkCompileErrors(sVertex, "VERTEX");
+		if (!checkCompileErrors(sVertex, "VERTEX"))
+			SCB_CORE_ERROR("Failed to compile vertex shader: ID{0}", this->m_ShaderID);
+		;
 
 		sFragment = glCreateShader(GL_FRAGMENT_SHADER);
 		glShaderSource(sFragment, 1, &fragmentSource, NULL);
 		glCompileShader(sFragment);
-		checkCompileErrors(sFragment, "FRAGMENT");
+		if (!checkCompileErrors(sFragment, "FRAGMENT"))
+			SCB_CORE_ERROR("Failed to compile fragment shader: ID{0}", this->m_ShaderID);
+		;
 
 		if (geometrySource != nullptr)
 		{
 			gShader = glCreateShader(GL_GEOMETRY_SHADER);
 			glShaderSource(gShader, 1, &geometrySource, NULL);
 			glCompileShader(gShader);
-			checkCompileErrors(gShader, "GEOMETRY");
+			if (!checkCompileErrors(gShader, "GEOMETRY"))
+				SCB_CORE_ERROR("Failed to compile geometry shader: ID{0}", this->m_ShaderID);
 		}
 
 		this->m_ShaderID = glCreateProgram();
+		SCB_CORE_TRACE(m_ShaderID);
 		glAttachShader(this->m_ShaderID, sVertex);
 		glAttachShader(this->m_ShaderID, sFragment);
 		if (geometrySource != nullptr)
 			glAttachShader(this->m_ShaderID, gShader);
 		glLinkProgram(this->m_ShaderID);
-		checkCompileErrors(this->m_ShaderID, "PROGRAM");
+		if(!checkCompileErrors(this->m_ShaderID, "PROGRAM"))
+			SCB_CORE_ERROR("Failed to create program: ID: {0}", this->m_ShaderID);
 
 		glDeleteShader(sVertex);
 		glDeleteShader(sFragment);
@@ -81,8 +89,9 @@ namespace Scribble {
 			glDeleteShader(gShader);
 	}
 
-	void Shader::checkCompileErrors(uint32_t object, std::string type)
+	bool Shader::checkCompileErrors(uint32_t object, std::string type)
 	{
+		bool compiled = true;
 		int success;
 		char infoLog[1024];
 		if (type != "PROGRAM") {
@@ -90,15 +99,19 @@ namespace Scribble {
 			if (!success) {
 				glGetShaderInfoLog(object, 1024, NULL, infoLog);
 				SCB_CORE_ERROR("[Shader] Compile-time error: Type {0}\n{1}", type, infoLog);
+				compiled = false;
 			}
 		}
 		else {
 			glGetProgramiv(object, GL_LINK_STATUS, &success);
 			if (!success) {
-				glGetShaderInfoLog(object, 1024, NULL, infoLog);
-				SCB_CORE_ERROR("[Shader] Compile-time error: Type {0}\n{1}", type, infoLog);
+				glGetProgramInfoLog(object, 1024, NULL, infoLog);
+				SCB_CORE_ERROR("[Shader] Link-time error: Type {0}\n{1}", type, infoLog);
+				compiled = false;
 			}
 		}
+
+		return compiled;
 	}
 
 }
