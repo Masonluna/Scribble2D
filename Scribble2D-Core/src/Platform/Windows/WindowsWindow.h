@@ -2,6 +2,7 @@
 #include "Core/Window.h"
 
 #include <GLFW/glfw3.h>
+#include <Renderer/RenderContext.h>
 
 namespace Scribble {
 
@@ -29,6 +30,7 @@ namespace Scribble {
 		virtual void Shutdown();
 
 		GLFWwindow* m_Window;
+		std::unique_ptr<RenderContext> m_Context;
 
 		struct WindowData
 		{

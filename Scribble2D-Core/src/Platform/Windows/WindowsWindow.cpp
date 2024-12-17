@@ -43,10 +43,16 @@ namespace Scribble {
 			s_GLFWInitialized = true;
 		}
 
-		m_Window = glfwCreateWindow((int)specs.Width, (int)specs.Height, m_Data.Title.c_str(), nullptr, nullptr);
+		{
+		#ifdef CORE_DEBUG
+			glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GLFW_TRUE);
+		#endif
+			m_Window = glfwCreateWindow((int)specs.Width, (int)specs.Height, m_Data.Title.c_str(), nullptr, nullptr);
+		}
 
-		glfwMakeContextCurrent(m_Window);
-		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		m_Context = std::make_unique<RenderContext>(m_Window);
+		m_Context->Init();
+
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 
@@ -95,6 +101,33 @@ namespace Scribble {
 				}
 			});
 
+		glfwSetKeyCallback(m_Window, [](GLFWwindow* window, int key, int scancode, int action, int mods)
+			{
+				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+
+				switch (action) {
+
+				case GLFW_PRESS:
+				{
+					KeyPressedEvent event(key, 0);
+					data.EventCallback(event);
+					break;
+				}
+				case GLFW_RELEASE:
+				{
+					KeyReleasedEvent event(key);
+					data.EventCallback(event);
+					break;
+				}
+				case GLFW_REPEAT:
+				{
+					KeyPressedEvent event(key, true);
+					data.EventCallback(event);
+					break;
+				}
+				}
+			});
+
 		glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int button, int action, int mods)
 			{
 				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
@@ -137,12 +170,15 @@ namespace Scribble {
 	void WindowsWindow::Shutdown()
 	{
 		glfwDestroyWindow(m_Window);
+
+		// For now, Scribble will only support one window for an application.
+		glfwTerminate();
 	}
 
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		m_Context->SwapBuffers();
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)

@@ -18,6 +18,8 @@ public:
 		SCB_TRACE("{0}", event);
 	}
 
+private:
+	Scribble::Renderer m_Renderer;
 };
 
 class Sandbox : public Scribble::Application
