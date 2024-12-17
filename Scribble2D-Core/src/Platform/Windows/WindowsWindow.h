@@ -1,8 +1,9 @@
 #pragma once
 #include "Core/Window.h"
 
+#include "Renderer/RenderContext.h"
 #include <GLFW/glfw3.h>
-#include <Renderer/RenderContext.h>
+#include <glm/glm.hpp>
 
 namespace Scribble {
 

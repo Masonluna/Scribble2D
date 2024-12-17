@@ -13,11 +13,11 @@ public:
 	void OnUpdate() override
 	{
 		//SCB_INFO("ExampleLayer::Update");
-		m_Renderer.DrawQuad(glm::vec2(200.0f + frame++, 200.0f), glm::vec2(35.0f, 35.0f), 0.0f, glm::vec4(1.0f, 0.0f, 1.0f, 0.1f));
-		m_Renderer.DrawQuad(glm::vec2(240.0f + frame++, 200.0f), glm::vec2(35.0f, 35.0f), 0.0f, glm::vec4(1.0f, 0.0f, 1.0f, 0.1f));
-		m_Renderer.DrawQuad(glm::vec2(280.0f + frame++, 200.0f), glm::vec2(35.0f, 35.0f), 0.0f, glm::vec4(1.0f, 0.0f, 1.0f, 0.1f));
-		m_Renderer.DrawQuad(glm::vec2(320.0f + frame++, 200.0f), glm::vec2(35.0f, 35.0f), 0.0f, glm::vec4(1.0f, 0.0f, 1.0f, 0.1f));
-		m_Renderer.DrawQuad(glm::vec2(360.0f + frame++, 200.0f), glm::vec2(35.0f, 35.0f), 0.0f, glm::vec4(1.0f, 0.0f, 1.0f, 0.1f));
+		m_Renderer.DrawQuad(glm::vec2(100.0f + frame++, 200.0f), glm::vec2(35.0f, 35.0f), 0.0f, glm::vec4(1.0f, 0.0f, 1.0f, 0.1f));
+		m_Renderer.DrawQuad(glm::vec2(140.0f + frame++, 200.0f), glm::vec2(35.0f, 35.0f), 0.0f, glm::vec4(1.0f, 0.0f, 1.0f, 0.1f));
+		m_Renderer.DrawQuad(glm::vec2(180.0f + frame++, 200.0f), glm::vec2(35.0f, 35.0f), 0.0f, glm::vec4(1.0f, 0.0f, 1.0f, 0.1f));
+		m_Renderer.DrawQuad(glm::vec2(220.0f + frame++, 200.0f), glm::vec2(35.0f, 35.0f), 0.0f, glm::vec4(1.0f, 0.0f, 1.0f, 0.1f));
+		m_Renderer.DrawQuad(glm::vec2(260.0f + frame++, 200.0f), glm::vec2(35.0f, 35.0f), 0.0f, glm::vec4(1.0f, 0.0f, 1.0f, 0.1f));
 
 	}
 

@@ -21,7 +21,7 @@ namespace Scribble {
 		inline unsigned int GetID() const { return m_RendererID; }
 
 	private:
-		unsigned int m_RendererID = 0;
+		uint32_t m_RendererID = 0;
 		VertexBufferLayout m_Layout;
 	};
 }

@@ -73,6 +73,7 @@ namespace Scribble {
 				WindowResizeEvent event(width, height);
 				data.Width = width;
 				data.Height = height;
+				glViewport(0, 0, width, height);
 				data.EventCallback(event);
 			});
 

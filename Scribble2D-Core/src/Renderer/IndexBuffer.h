@@ -23,7 +23,7 @@ namespace Scribble {
 		const uint32_t GetCount() const { return m_Count; }
 
 	private:
-		unsigned int m_RendererID;
+		uint32_t m_RendererID;
 		uint32_t m_Count;
 	};
 }
