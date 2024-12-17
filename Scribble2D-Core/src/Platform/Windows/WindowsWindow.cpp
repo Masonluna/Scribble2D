@@ -208,12 +208,39 @@ namespace Scribble {
 	void GLAPIENTRY MessageCallback(GLenum source, GLenum type, GLuint id, GLenum severity,
 		GLsizei length, const GLchar* message, const void* userParam)
 	{
-		SCB_CORE_ERROR("OpenGL Debug Message:");
-		SCB_CORE_ERROR("Source: {0}", source);
-		SCB_CORE_ERROR("Type: {0}", type);
-		SCB_CORE_ERROR("ID: {0}", id);
-		SCB_CORE_ERROR("Severity: {0}", severity);
-		SCB_CORE_ERROR("Message: {0}", message);
+		if (severity == GL_DEBUG_SEVERITY_HIGH) {
+			SCB_CORE_FATAL("OpenGL Debug Message:");
+			SCB_CORE_FATAL("Source: {0}", source);
+			SCB_CORE_FATAL("Type: {0}", type);
+			SCB_CORE_FATAL("ID: {0}", id);
+			SCB_CORE_FATAL("Severity: GL_DEBUG_SEVERITY_HIGH");
+			SCB_CORE_FATAL("Message: {0}", message);
+		}
+		else if (severity == GL_DEBUG_SEVERITY_MEDIUM) {
+			SCB_CORE_ERROR("OpenGL Debug Message:");
+			SCB_CORE_ERROR("Source: {0}", source);
+			SCB_CORE_ERROR("Type: {0}", type);
+			SCB_CORE_ERROR("ID: {0}", id);
+			SCB_CORE_ERROR("Severity: GL_DEBUG_SEVERITY_MEDIUM");
+			SCB_CORE_ERROR("Message: {0}", message);
+		}
+		else if (severity == GL_DEBUG_SEVERITY_LOW) {
+			SCB_CORE_WARN("OpenGL Debug Message:");
+			SCB_CORE_WARN("Source: {0}", source);
+			SCB_CORE_WARN("Type: {0}", type);
+			SCB_CORE_WARN("ID: {0}", id);
+			SCB_CORE_WARN("Severity: GL_DEBUG_SEVERITY_LOW");
+			SCB_CORE_WARN("Message: {0}", message);
+		} 
+		else if (severity == GL_DEBUG_SEVERITY_NOTIFICATION) {
+			SCB_CORE_INFO("OpenGL Debug Message:");
+			SCB_CORE_INFO("Source: {0}", source);
+			SCB_CORE_INFO("Type: {0}", type);
+			SCB_CORE_INFO("ID: {0}", id);
+			SCB_CORE_INFO("Severity: GL_DEBUG_SEVERITY_NOTIFICATION");
+			SCB_CORE_INFO("Message: {0}", message);
+		}
+
 
 	}
 }
