@@ -18,6 +18,7 @@ namespace Scribble {
 
 		void AddBuffer(const VertexBuffer& vb, const VertexBufferLayout& layout);
 
+		inline unsigned int GetID() const { return m_RendererID; }
 
 	private:
 		uint32_t m_RendererID;

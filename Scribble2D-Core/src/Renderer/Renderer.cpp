@@ -13,15 +13,19 @@ namespace Scribble {
 		// ========================================
 		m_VertexArray.Init();
 
-		// Vertex Buffers
-		m_VertexBuffers.emplace(Shapes::Triangle, VertexBuffer(m_VertexData.triangleVertices, sizeof(VertexData::triangleVertices)));
+		m_VertexBuffers.emplace(std::piecewise_construct,
+			std::forward_as_tuple(Shapes::Triangle),
+			std::forward_as_tuple(m_VertexData.triangleVertices, sizeof(VertexData::triangleVertices)));
 
-		// TODO: Figure out why it's reusing 1 as a renderer ID.
-		m_VertexBuffers.emplace(Shapes::Quad, VertexBuffer(m_VertexData.quadVertices, sizeof(VertexData::quadVertices)));
+		m_VertexBuffers.emplace(std::piecewise_construct,
+			std::forward_as_tuple(Shapes::Quad),
+			std::forward_as_tuple(m_VertexData.quadVertices, sizeof(VertexData::quadVertices)));
+
 
 		// Index Buffers 
-		m_IndexBuffers.emplace(Shapes::Quad, IndexBuffer(m_VertexData.quadIndices, sizeof(VertexData::quadIndices)));
-		m_VertexBuffers[Shapes::Quad].Bind();
+		m_IndexBuffers.emplace(std::piecewise_construct,
+			std::forward_as_tuple(Shapes::Quad),
+			std::forward_as_tuple(m_VertexData.quadIndices, 6));
 		GLint vboSize = 0;
 		glGetBufferParameteriv(GL_ARRAY_BUFFER, GL_BUFFER_SIZE, &vboSize);
 		SCB_CORE_INFO("Vertex Buffer Size: {0} bytes", vboSize);
@@ -48,6 +52,10 @@ namespace Scribble {
 
 	void Renderer::DrawQuad(const glm::vec2& pos, const glm::vec2& size, float rotate, const glm::vec4& color)
 	{
+		m_VertexArray.Bind();  // Bind VAO
+
+		m_VertexBuffers[Shapes::Quad].Bind();  // Bind VBO
+		m_IndexBuffers[Shapes::Quad].Bind();   // Bind EBO
 
 		// Go in REVERSE ORDER: Transform, then rotate, then scale
 		glm::mat4 model = glm::mat4(1.0f);
@@ -59,12 +67,14 @@ namespace Scribble {
 
 		model = glm::scale(model, glm::vec3(size, 1.0f)); // Scale
 
+		glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(1920),
+			static_cast<float>(1080), 0.0f, -1.0f, 1.0f);
+
 		this->m_SolidShader.Bind();
 		m_VertexArray.AddBuffer(m_VertexBuffers[Shapes::Quad], m_VertexBuffers[Shapes::Quad].GetLayout());
-		m_VertexBuffers[Shapes::Quad].Bind();
-		m_IndexBuffers[Shapes::Quad].Bind();
 
 		m_SolidShader.SetMat4("model", model);
+		m_SolidShader.SetMat4("projection", projection);
 		m_SolidShader.SetFloat4("spriteColor", color);
 
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);

@@ -18,6 +18,8 @@ namespace Scribble {
 		const VertexBufferLayout& GetLayout() const { return m_Layout; }
 		void SetLayout(const VertexBufferLayout& layout) { m_Layout = layout; }
 
+		inline unsigned int GetID() const { return m_RendererID; }
+
 	private:
 		unsigned int m_RendererID = 0;
 		VertexBufferLayout m_Layout;

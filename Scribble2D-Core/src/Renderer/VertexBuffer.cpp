@@ -13,10 +13,7 @@ Scribble::VertexBuffer::VertexBuffer(float* vertices, uint32_t size)
 	glGenBuffers(1, &m_RendererID);
 	glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
 	glBufferData(GL_ARRAY_BUFFER, size, vertices, GL_STATIC_DRAW);
-	GLenum error = glGetError();
-	if (error != GL_NO_ERROR) {
-		SCB_CORE_INFO("OpenGL Error before glGenBuffers: {0}",error);
-	}
+	SCB_CORE_INFO("VERTEX BUFFER CONSTRUCTED: ID: {0}", m_RendererID);
 }
 
 Scribble::VertexBuffer::~VertexBuffer()
