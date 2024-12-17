@@ -26,9 +26,7 @@ namespace Scribble {
 		m_IndexBuffers.emplace(std::piecewise_construct,
 			std::forward_as_tuple(Shapes::Quad),
 			std::forward_as_tuple(m_VertexData.quadIndices, 6));
-		GLint vboSize = 0;
-		glGetBufferParameteriv(GL_ARRAY_BUFFER, GL_BUFFER_SIZE, &vboSize);
-		SCB_CORE_INFO("Vertex Buffer Size: {0} bytes", vboSize);
+
 
 		// Set Vertex Buffer Layout
 		VertexBufferLayout layout = {
@@ -67,22 +65,19 @@ namespace Scribble {
 
 		model = glm::scale(model, glm::vec3(size, 1.0f)); // Scale
 
+
+		// TODO: this can most certainly be done somewhere else, and outside of the render loop.
 		glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(1920),
 			static_cast<float>(1080), 0.0f, -1.0f, 1.0f);
+		m_SolidShader.SetMat4("projection", projection);
 
 		this->m_SolidShader.Bind();
 		m_VertexArray.AddBuffer(m_VertexBuffers[Shapes::Quad], m_VertexBuffers[Shapes::Quad].GetLayout());
 
 		m_SolidShader.SetMat4("model", model);
-		m_SolidShader.SetMat4("projection", projection);
 		m_SolidShader.SetFloat4("spriteColor", color);
 
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-		GLenum error = glGetError();
-		if (error != GL_NO_ERROR) {
-			SCB_CORE_ERROR("OpenGL Error: {0}", error);
-		}
-
 	}
 
 	void Renderer::DrawTriangle(const glm::vec2& pos, float scale, float rotate, const glm::vec4& color)

@@ -15,8 +15,6 @@ void Scribble::RenderContext::Init()
 	SCB_CORE_ASSERT(status, "Failed to initialize Glad");
 
 	SCB_CORE_INFO("OpenGL Info");
-
-
 	SCB_CORE_INFO("  Vendor: {0}", reinterpret_cast<const char*>(glGetString(GL_VENDOR)));
 	SCB_CORE_INFO("  Renderer: {0}", reinterpret_cast<const char*>(glGetString(GL_RENDERER)));
 	SCB_CORE_INFO("  Version: {0}", reinterpret_cast<const char*>(glGetString(GL_VERSION)));

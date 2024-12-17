@@ -55,14 +55,12 @@ namespace Scribble {
 		glCompileShader(sVertex);
 		if (!checkCompileErrors(sVertex, "VERTEX"))
 			SCB_CORE_ERROR("Failed to compile vertex shader: ID{0}", this->m_ShaderID);
-		;
 
 		sFragment = glCreateShader(GL_FRAGMENT_SHADER);
 		glShaderSource(sFragment, 1, &fragmentSource, NULL);
 		glCompileShader(sFragment);
 		if (!checkCompileErrors(sFragment, "FRAGMENT"))
 			SCB_CORE_ERROR("Failed to compile fragment shader: ID{0}", this->m_ShaderID);
-		;
 
 		if (geometrySource != nullptr)
 		{
@@ -74,7 +72,6 @@ namespace Scribble {
 		}
 
 		this->m_ShaderID = glCreateProgram();
-		SCB_CORE_TRACE(m_ShaderID);
 		glAttachShader(this->m_ShaderID, sVertex);
 		glAttachShader(this->m_ShaderID, sFragment);
 		if (geometrySource != nullptr)

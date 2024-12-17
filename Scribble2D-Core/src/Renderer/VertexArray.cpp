@@ -9,8 +9,7 @@ namespace Scribble {
 
 	VertexArray::~VertexArray()
 	{
-		if (m_RendererID != 0)
-			glDeleteVertexArrays(1, &m_RendererID);
+		glDeleteVertexArrays(1, &m_RendererID);
 	}
 
 	void VertexArray::Init()
