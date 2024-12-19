@@ -3,9 +3,6 @@
 
 extern Scribble::Application* Scribble::CreateApplication();
 
-#ifndef SCB_MAIN_DEFINED
-#define SCB_MAIN_DEFINED
-
 int main(int argc, char** argv)
 {
 	Scribble::Log::Init();
@@ -15,5 +12,3 @@ int main(int argc, char** argv)
 	app->Run();
 	delete app;
 }
-
-#endif
