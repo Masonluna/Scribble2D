@@ -10,15 +10,19 @@ public:
 		m_Renderer.Init();
 	}
 
-	void OnUpdate() override
+	void OnUpdate(Scribble::Timestep ts) override
 	{
+		m_TimeElapsed += ts.GetSeconds();
+		while (m_TimeElapsed > 0.01f) {
+			step++;
+			m_TimeElapsed -= 0.01f;
+		}
 		//SCB_INFO("ExampleLayer::Update");
-		m_Renderer.DrawQuad(glm::vec2(100.0f + frame++, 200.0f), glm::vec2(35.0f, 35.0f), 0.0f, glm::vec3(1.0f, 0.0f, 1.0f));
-		m_Renderer.DrawQuad(glm::vec2(140.0f + frame++, 200.0f), glm::vec2(35.0f, 35.0f), 0.0f, glm::vec3(1.0f, 0.0f, 1.0f));
-		m_Renderer.DrawQuad(glm::vec2(180.0f + frame++, 200.0f), glm::vec2(35.0f, 35.0f), 0.0f, glm::vec3(1.0f, 0.0f, 1.0f));
-		m_Renderer.DrawQuad(glm::vec2(220.0f + frame++, 200.0f), glm::vec2(35.0f, 35.0f), 0.0f, glm::vec3(1.0f, 0.0f, 1.0f));
-		m_Renderer.DrawQuad(glm::vec2(260.0f + frame++, 200.0f), glm::vec2(35.0f, 35.0f), 0.0f, glm::vec3(1.0f, 0.0f, 1.0f));
-
+		m_Renderer.DrawQuad(glm::vec2(100.0f + step, 200.0f), glm::vec2(35.0f, 35.0f), 0.0f, glm::vec3(1.0f, 0.0f, 1.0f));
+		m_Renderer.DrawQuad(glm::vec2(140.0f + step, 200.0f), glm::vec2(35.0f, 35.0f), 0.0f, glm::vec3(1.0f, 0.0f, 1.0f));
+		m_Renderer.DrawQuad(glm::vec2(180.0f + step, 200.0f), glm::vec2(35.0f, 35.0f), 0.0f, glm::vec3(1.0f, 0.0f, 1.0f));
+		m_Renderer.DrawQuad(glm::vec2(220.0f + step, 200.0f), glm::vec2(35.0f, 35.0f), 0.0f, glm::vec3(1.0f, 0.0f, 1.0f));
+		m_Renderer.DrawQuad(glm::vec2(260.0f + step, 200.0f), glm::vec2(35.0f, 35.0f), 0.0f, glm::vec3(1.0f, 0.0f, 1.0f));
 	}
 
 	void OnEvent(Scribble::Event& event) override
@@ -28,7 +32,8 @@ public:
 
 private:
 	Scribble::Renderer m_Renderer;
-	unsigned int frame = 0;
+	unsigned int step = 2;
+	float m_TimeElapsed = 0.0f;
 };
 
 class Sandbox : public Scribble::Application

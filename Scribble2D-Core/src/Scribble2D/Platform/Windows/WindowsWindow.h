@@ -14,6 +14,8 @@ namespace Scribble {
 		virtual ~WindowsWindow();
 
 		void OnUpdate() override;
+		static void OnWindowResize(uint32_t width, uint32_t height);
+
 
 		inline unsigned int GetWidth() const override { return m_Data.Width; }
 		inline unsigned int GetHeight() const override { return m_Data.Height; }
@@ -46,3 +48,5 @@ namespace Scribble {
 	};
 
 }
+
+

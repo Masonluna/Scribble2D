@@ -23,10 +23,15 @@ namespace Scribble {
 
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
+		bool OnWindowResize(WindowResizeEvent& e);
 
 		std::unique_ptr<Window> m_Window;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
+
+		float m_LastFrameTime = 0.0f;
+		bool m_Minimized = false;
+
 	};
 
 	// Should be defined by the client
