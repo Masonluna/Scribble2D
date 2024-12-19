@@ -81,6 +81,11 @@ namespace Scribble {
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	}
 
+	void Renderer::DrawObject(const Object& object)
+	{
+		DrawQuad(object.GetPosition(), object.GetSize(), object.GetRotation(), object.GetColor());
+	}
+
 	void Renderer::DrawTriangle(const glm::vec2& pos, float scale, float rotate, const glm::vec3& color)
 	{}
 

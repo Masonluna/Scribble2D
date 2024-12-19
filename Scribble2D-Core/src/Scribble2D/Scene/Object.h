@@ -15,8 +15,12 @@ namespace Scribble {
 		{
 
 		}
-		//Object(glm::vec2& positon, glm::vec2& size, float rotation, Texture2D texture);
+		//Object(glm::vec2& position, glm::vec2& size, float rotation, Texture2D texture);
 
+		const glm::vec2& GetPosition() const { return m_Position; }
+		const glm::vec2& GetSize() const { return m_Size; }
+		const float GetRotation() const { return m_Rotation; }
+		const glm::vec3& GetColor() const { return m_Color; }
 
 	protected:
 		glm::vec2 m_Position;
