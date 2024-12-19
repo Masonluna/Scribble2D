@@ -1,4 +1,5 @@
 #include <Scribble2D.h>
+#include "Scribble2D/Events/MouseEvent.h"
 
 
 class ExampleLayer : public Scribble::Layer
@@ -27,7 +28,13 @@ public:
 
 	void OnEvent(Scribble::Event& event) override
 	{
-		//SCB_TRACE("{0}", event);
+		if (event.GetEventType() == Scribble::EventType::MouseButtonPressed) {
+			Scribble::MouseButtonPressedEvent& temp = static_cast<Scribble::MouseButtonPressedEvent&>(event);
+			if (temp.GetMouseButton() == Scribble::MouseButtonLeft) {
+				SCB_TRACE("{0}", event);
+			}
+		}
+
 	}
 
 private:

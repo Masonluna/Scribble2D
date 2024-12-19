@@ -7,6 +7,8 @@
 #include "Scribble2D/Core/Layer.h"
 #include "Scribble2D/Core/Log.h"
 #include "Scribble2D/Core/Core.h"
+#include "Scribble2D/Core/Input.h"
+
 
 #include "Scribble2D/Core/Timestep.h"
 

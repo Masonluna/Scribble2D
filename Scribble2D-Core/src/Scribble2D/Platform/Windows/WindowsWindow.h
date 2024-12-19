@@ -24,6 +24,8 @@ namespace Scribble {
 		{ 
 			m_Data.EventCallback = callback; 
 		}
+
+		void* GetNativeWindow() const { return m_Window; }
 		
 		void SetVSync(bool enabled) override;
 		bool IsVSync() const override;

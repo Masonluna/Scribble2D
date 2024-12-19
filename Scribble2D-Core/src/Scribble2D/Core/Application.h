@@ -21,6 +21,9 @@ namespace Scribble {
 		void PushLayer(Layer* layer);
 		void PushOverlay(Layer* overlay);
 
+		static Application& Get() { return *s_Instance; }
+
+
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
 		bool OnWindowResize(WindowResizeEvent& e);
@@ -31,6 +34,8 @@ namespace Scribble {
 
 		float m_LastFrameTime = 0.0f;
 		bool m_Minimized = false;
+
+		static Application* s_Instance;
 
 	};
 
