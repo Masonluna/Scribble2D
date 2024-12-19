@@ -8,6 +8,8 @@
 #include "Scribble2D/Core/Log.h"
 #include "Scribble2D/Core/Core.h"
 
+#include "Scribble2D/Core/Timestep.h"
+
 // Renderer modules
 #include "Scribble2D/Renderer/Renderer.h"
 
