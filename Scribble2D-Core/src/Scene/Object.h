@@ -18,7 +18,7 @@ namespace Scribble {
 		//Object(glm::vec2& positon, glm::vec2& size, float rotation, Texture2D texture);
 
 
-	private:
+	protected:
 		glm::vec2 m_Position;
 		glm::vec2 m_Size;
 		float m_Rotation;
