@@ -3,6 +3,7 @@
 #include "glad/glad.h"
 #include "stb_image.h"
 
+#include <filesystem>
 
 namespace Scribble {
 	std::map<std::string, Texture2D>    ResourceManager::s_Textures;
@@ -62,6 +63,8 @@ namespace Scribble {
 			std::ifstream vertexShaderFile(vShaderFile);
 			std::ifstream fragmentShaderFile(fShaderFile);
 			std::stringstream vShaderStream, fShaderStream;
+
+			SCB_TRACE(std::filesystem::current_path().string());
 
 			vShaderStream << vertexShaderFile.rdbuf();
 			fShaderStream << fragmentShaderFile.rdbuf();
