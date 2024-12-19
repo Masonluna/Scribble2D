@@ -1,6 +1,7 @@
 #pragma once
 
-#include "../Events/Event.h"
+#include "Scribble2D/Events/Event.h"
+#include "Scribble2D/Core/Layer.h"
 
 
 namespace Scribble {
@@ -14,6 +15,7 @@ namespace Scribble {
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
 		virtual void OnUpdate() {}
+		virtual void OnUPdate() {}
 		virtual void OnEvent(Event& e) {}
 
 	protected:
