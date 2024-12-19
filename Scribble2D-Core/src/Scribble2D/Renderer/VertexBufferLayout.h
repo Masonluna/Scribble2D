@@ -1,4 +1,5 @@
 #pragma once
+#include "Scribble2D/Core/Core.h"
 #include <vector>
 
 namespace Scribble {
