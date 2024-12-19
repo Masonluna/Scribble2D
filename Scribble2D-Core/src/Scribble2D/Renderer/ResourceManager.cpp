@@ -64,9 +64,6 @@ namespace Scribble {
 		std::string geometryCode;
 		try
 		{
-			SCB_TRACE(vShaderFile);
-			SCB_TRACE(fShaderFile);
-
 
 			std::ifstream vertexShaderFile(vShaderFile);
 			std::ifstream fragmentShaderFile(fShaderFile);
