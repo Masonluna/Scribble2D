@@ -6,13 +6,18 @@
 #include <filesystem>
 
 namespace Scribble {
+	std::string getResourcePath(const std::string& fileName)
+	{
+		return std::string(RESOURCE_PATH) + fileName;
+	}
+
 	std::map<std::string, Texture2D>    ResourceManager::s_Textures;
 	std::map<std::string, Shader>       ResourceManager::s_Shaders;
 
 	void ResourceManager::InitializeShaders()
 	{
-		LoadShader("../Scribble2D-Core/res/Shaders/renderer.vs.glsl", "../Scribble2D-Core/res/Shaders/renderer_col_sprite.fs.glsl", nullptr, "solidShader");
-		LoadShader("../Scribble2D-Core/res/Shaders/renderer.vs.glsl", "../Scribble2D-Core/res/Shaders/renderer_tex_sprite.fs.glsl", nullptr, "texShader");
+		LoadShader(getResourcePath("Shaders/renderer.vs.glsl").c_str(), getResourcePath("Shaders/renderer_col_sprite.fs.glsl").c_str(), nullptr, "solidShader");
+		LoadShader(getResourcePath("Shaders/renderer.vs.glsl").c_str(), getResourcePath("Shaders/renderer_tex_sprite.fs.glsl").c_str(), nullptr, "texShader");
 
 	}
 
@@ -59,12 +64,13 @@ namespace Scribble {
 		std::string geometryCode;
 		try
 		{
+			SCB_TRACE(vShaderFile);
+			SCB_TRACE(fShaderFile);
+
 
 			std::ifstream vertexShaderFile(vShaderFile);
 			std::ifstream fragmentShaderFile(fShaderFile);
 			std::stringstream vShaderStream, fShaderStream;
-
-			SCB_TRACE(std::filesystem::current_path().string());
 
 			vShaderStream << vertexShaderFile.rdbuf();
 			fShaderStream << fragmentShaderFile.rdbuf();

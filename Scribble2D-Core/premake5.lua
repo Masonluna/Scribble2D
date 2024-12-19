@@ -37,6 +37,9 @@ project "Scribble2D-Core"
         "spdlog.lib"
     }
 
+    defines { "RESOURCE_PATH=\"" .. path.getabsolute("res/") .. "/\"" }
+
+
     filter "system:windows"
         systemversion "latest"
         defines {
