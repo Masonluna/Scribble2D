@@ -1,7 +1,7 @@
 #include "scbpch.h"
 #include "Renderer/ResourceManager.h"
 #include "Application.h"
-#include "Utils/Utils.h"
+#include "Scribble2D/Utils/Utils.h"
 
 #include <glad/glad.h>
 
