@@ -1,9 +1,10 @@
 #pragma once
 
-#include "scbpch.h"
-
 #include "Texture.h"
 #include "Shader.h"
+
+#include <string>
+#include <unordered_map>
 
 namespace Scribble {
 
