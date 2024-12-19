@@ -48,7 +48,7 @@ namespace Scribble {
 		glClear(GL_COLOR_BUFFER_BIT);
 	}
 
-	void Renderer::DrawQuad(const glm::vec2& pos, const glm::vec2& size, float rotate, const glm::vec4& color)
+	void Renderer::DrawQuad(const glm::vec2& pos, const glm::vec2& size, float rotate, const glm::vec3& color)
 	{
 		m_VertexArray.Bind();  // Bind VAO
 
@@ -76,12 +76,12 @@ namespace Scribble {
 		m_VertexArray.AddBuffer(m_VertexBuffers[Shapes::Quad], m_VertexBuffers[Shapes::Quad].GetLayout());
 
 		m_SolidShader.SetMat4("model", model);
-		m_SolidShader.SetFloat4("spriteColor", color);
+		m_SolidShader.SetFloat4("spriteColor", glm::vec4(color, 1.0f));
 
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	}
 
-	void Renderer::DrawTriangle(const glm::vec2& pos, float scale, float rotate, const glm::vec4& color)
+	void Renderer::DrawTriangle(const glm::vec2& pos, float scale, float rotate, const glm::vec3& color)
 	{}
 
 	void Renderer::DrawLine(const glm::vec2 & p1, const glm::vec2 & p2, const glm::vec4 & color, float thickness)

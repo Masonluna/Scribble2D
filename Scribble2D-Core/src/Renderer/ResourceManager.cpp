@@ -3,10 +3,11 @@
 #include "glad/glad.h"
 #include "Vendor/stb_image.h"
 #include "Shader.h"
+#include "Texture.h"
 
 
 namespace Scribble {
-	//std::map<std::string, Texture2D>    ResourceManager::s_Textures;
+	std::map<std::string, Texture2D>    ResourceManager::s_Textures;
 	std::map<std::string, Shader>       ResourceManager::s_Shaders;
 
 	void ResourceManager::InitializeShaders()
@@ -30,24 +31,24 @@ namespace Scribble {
 		return s_Shaders[name];
 	}
 
-	/*Texture2D ResourceManager::LoadTexture(const char* file, bool alpha, std::string name)
+	Texture2D ResourceManager::LoadTexture(const char* file, bool alpha, std::string name)
 	{
 		s_Textures[name] = LoadTextureFromFile(file, alpha);
 		return s_Textures[name];
-	}*/
+	}
 
-	/*Texture2D ResourceManager::GetTexture(std::string name)
+	Texture2D ResourceManager::GetTexture(std::string name)
 	{
 		return s_Textures[name];
-	}*/
+	}
 
 	void ResourceManager::Clear()
 	{
 		for (auto i : s_Shaders)
 			glDeleteProgram(i.second.m_ShaderID);
-		/*for (auto i : s_Textures)
-			glDeleteTextures(1, &i.second.m_ID);
-			*/
+		for (auto i : s_Textures)
+			glDeleteTextures(1, &i.second.m_TextureID);
+			
 	}
 
 
@@ -95,8 +96,8 @@ namespace Scribble {
 		return shader;
 	}
 
-	/*Texture2D ResourceManager::LoadTextureFromFile(const char* file, bool alpha)
+	Texture2D ResourceManager::LoadTextureFromFile(const char* file, bool alpha)
 	{
 		return Texture2D();
-	}*/
+	}
 }
