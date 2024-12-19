@@ -17,6 +17,7 @@ project "Scribble2D-Core"
 
     includedirs {
         "src",
+        "src/Scribble2D",
         "vendor/GLFW/include",
         "vendor/Glad/include",
         "vendor/glm/glm-1.0.1",

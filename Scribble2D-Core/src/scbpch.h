@@ -13,8 +13,8 @@
 #include <unordered_map>
 #include <unordered_set>
 
-#include "Core/Log.h"
-#include "Core/Core.h"
+#include "Scribble2D/Core/Log.h"
+#include "Scribble2D/Core/Core.h"
 
 #ifdef SCRIBBLE_PLATFORM_WINDOWS
 	#include <Windows.h>

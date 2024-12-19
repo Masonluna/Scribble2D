@@ -3,16 +3,16 @@
 // Used by Scribble2D Applications
 
 // Core modules
-#include "src/Core/Application.h"
-#include "src/Core/Layer.h"
-#include "src/Core/Log.h"
+#include "Scribble2D/Core/Application.h"
+#include "Scribble2D/Core/Layer.h"
+#include "Scribble2D/Core/Log.h"
 
 // Renderer modules
-#include "src/Renderer/Renderer.h"
+#include "Scribble2D/Renderer/Renderer.h"
 
 // Scene modules
-#include "Scene/Object.h"
+#include "Scribble2D/Scene/Object.h"
 
 // ===Entry Point=======================
-#include "src/Core/EntryPoint.h"
+#include "Scribble2D/Core/EntryPoint.h"
 // =====================================

@@ -1,5 +1,6 @@
 #pragma once
-#include "Core/Core.h"
+
+#include "Scribble2D/Core/Core.h"
 
 #include <string>
 #include <functional>
