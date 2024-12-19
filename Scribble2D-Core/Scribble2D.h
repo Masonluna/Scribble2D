@@ -6,6 +6,7 @@
 #include "Scribble2D/Core/Application.h"
 #include "Scribble2D/Core/Layer.h"
 #include "Scribble2D/Core/Log.h"
+#include "Scribble2D/Core/Core.h"
 
 // Renderer modules
 #include "Scribble2D/Renderer/Renderer.h"
