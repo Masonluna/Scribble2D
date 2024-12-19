@@ -14,6 +14,8 @@ namespace Scribble {
 
 		void Run();
 
+		Window& GetWindow() { return *m_Window; }
+
 		void OnEvent(Event& e);
 
 		void PushLayer(Layer* layer);
