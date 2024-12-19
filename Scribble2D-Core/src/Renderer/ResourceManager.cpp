@@ -2,8 +2,6 @@
 #include "ResourceManager.h"
 #include "glad/glad.h"
 #include "Vendor/stb_image.h"
-#include "Shader.h"
-#include "Texture.h"
 
 
 namespace Scribble {

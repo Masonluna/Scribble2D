@@ -2,7 +2,7 @@
 
 #include "scbpch.h"
 
-//#include "Texture.h"
+#include "Texture.h"
 #include "Shader.h"
 
 namespace Scribble {
