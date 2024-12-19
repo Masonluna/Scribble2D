@@ -1,7 +1,7 @@
 #include "scbpch.h"
 #include "ResourceManager.h"
 #include "glad/glad.h"
-#include "Vendor/stb_image.h"
+#include "stb_image.h"
 
 
 namespace Scribble {
