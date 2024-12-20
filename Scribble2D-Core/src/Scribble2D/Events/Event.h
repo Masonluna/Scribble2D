@@ -61,8 +61,6 @@ namespace Scribble {
 	// Dispatcher
 	class EventDispatcher
 	{
-		template<typename T>
-		using EventFunc = std::function<bool(T&)>;
 	public:
 		EventDispatcher(Event& event)
 			: m_Event(event)
@@ -70,11 +68,11 @@ namespace Scribble {
 
 		}
 
-		template<typename T>
-		bool Dispatch(EventFunc<T>& func)
+		template<typename T, typename F>
+		bool Dispatch(const F& func)
 		{
 			if (m_Event.GetEventType() == T::GetStaticType()) {
-				m_Event.Handled = func(*(T*)&m_Event);
+				m_Event.Handled |= func(static_cast<T&>(m_Event));
 				return true;
 			}
 			return false;
@@ -83,6 +81,8 @@ namespace Scribble {
 	private:
 		Event& m_Event;
 	};
+
+
 
 	inline std::string format_as(const Event& e)
 	{
