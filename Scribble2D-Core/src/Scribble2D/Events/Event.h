@@ -71,7 +71,7 @@ namespace Scribble {
 		}
 
 		template<typename T>
-		bool Dispatch(EventFunc<T> func)
+		bool Dispatch(EventFunc<T>& func)
 		{
 			if (m_Event.GetEventType() == T::GetStaticType()) {
 				m_Event.Handled = func(*(T*)&m_Event);
