@@ -7,7 +7,7 @@
 
 #define BIT(x) (1 << x)
 
-#define SCB_EVENT_FN_BIND(func) [this](auto&&... args) -> decltype(auto) { return this->fn(std::forward<decltype(args)>(args)...);}
+#define HZ_EVENT_FN_BIND(func) [this](auto&&... args) -> decltype(auto) { return this->func(std::forward<decltype(args)>(args)...);}
 
 
 namespace Scribble {
