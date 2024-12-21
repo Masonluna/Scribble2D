@@ -68,8 +68,8 @@ namespace Scribble {
 
 		// TODO: this can most certainly be done somewhere else, and outside of the render loop.
 		// Projection can probably go into Framebuffer somewhere.
-		glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(1920),
-			static_cast<float>(1080), 0.0f, -1.0f, 1.0f);
+		glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(Application::Get().GetWindow().GetWidth()),
+			static_cast<float>(Application::Get().GetWindow().GetHeight()), 0.0f, -1.0f, 1.0f);
 		m_SolidShader.SetMat4("projection", projection);
 
 		this->m_SolidShader.Bind();

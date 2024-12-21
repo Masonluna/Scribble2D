@@ -1,8 +1,10 @@
 #pragma once
+#include "Scribble2D/Core/Application.h"
 #include "VertexArray.h"
 #include "Shader.h"
 #include "glad/glad.h"
 #include "Scribble2D/Scene/Object.h"
+
 
 #include <unordered_map>
 
@@ -69,7 +71,7 @@ namespace Scribble {
 		Shader m_SolidShader;
 		VertexArray m_VertexArray;
 		VertexData m_VertexData;
-		// Unordered Map is not guaranteed to be useful here. But in the event I add more polygons, I want to future proof this class.
+		// Unordered Map is probably not useful here.
 		std::unordered_map<Shapes, VertexBuffer> m_VertexBuffers;
 		std::unordered_map<Shapes, IndexBuffer> m_IndexBuffers;
 	};
