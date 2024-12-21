@@ -11,7 +11,7 @@ namespace Scribble {
 	bool WindowsInput::IsKeyPressedImp(const int key)
 	{
 		GLFWwindow* window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
-		return glfwGetKey(window, key) == GLFW_PRESS;
+		return glfwGetKey(window, key) == GLFW_PRESS || glfwGetKey(window, key) == GLFW_REPEAT;
 	}
 
 	bool WindowsInput::IsMouseButtonPressedImp(const int button)

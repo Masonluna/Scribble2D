@@ -10,8 +10,12 @@ namespace Scribble {
 
 	class Input
 	{
-	public:
+	protected:
 		Input() = default;
+
+	public:
+		Input(const Input&) = delete;
+		Input& operator=(const Input&) = delete;
 
 		static bool IsKeyPressed(KeyCode key) { return s_Instance->IsKeyPressedImp(key); }
 		static bool IsMouseButtonPressed(MouseCode button) { return s_Instance->IsMouseButtonPressedImp(button); }
