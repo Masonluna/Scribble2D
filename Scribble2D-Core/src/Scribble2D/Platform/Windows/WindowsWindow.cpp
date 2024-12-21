@@ -176,7 +176,7 @@ namespace Scribble {
 			});
 
 
-		glViewport(0, 0, 1280, 720);
+		glViewport(0, 0, m_Data.Width, m_Data.Height);
 	}
 
 	void WindowsWindow::Shutdown()
