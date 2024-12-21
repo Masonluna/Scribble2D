@@ -8,9 +8,6 @@
 
 #define BIT(x) (1 << x)
 
-#define HZ_EVENT_FN_BIND(func) [this](auto&&... args) -> decltype(auto) { return this->func(std::forward<decltype(args)>(args)...);}
-
-
 namespace Scribble {
 
 	// Enum Classes
