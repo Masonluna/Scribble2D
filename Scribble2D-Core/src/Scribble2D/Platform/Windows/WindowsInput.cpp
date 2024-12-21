@@ -1,26 +1,24 @@
 #include "scbpch.h"
-#include "Scribble2D/Platform/Windows/WindowsInput.h"
+#include "Scribble2D/Core/Input.h"
 #include "Scribble2D/Core/Application.h"
 
 #include <GLFW/glfw3.h>
 
 namespace Scribble {
 
-	std::unique_ptr<Input> Input::s_Instance = std::make_unique<WindowsInput>();
-
-	bool WindowsInput::IsKeyPressedImp(const int key)
+	bool Input::IsKeyPressed(const KeyCode key)
 	{
 		GLFWwindow* window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 		return glfwGetKey(window, key) == GLFW_PRESS || glfwGetKey(window, key) == GLFW_REPEAT;
 	}
 
-	bool WindowsInput::IsMouseButtonPressedImp(const int button)
+	bool Input::IsMouseButtonPressed(const MouseCode button)
 	{
 		GLFWwindow* window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 		return glfwGetKey(window, button) == GLFW_PRESS;
 	}
 
-	std::pair<float, float> WindowsInput::GetMousePositionImp()
+	glm::vec2 Input::GetMousePosition()
 	{
 		GLFWwindow* window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 		double x, y;
@@ -28,14 +26,14 @@ namespace Scribble {
 		return { (float)x, (float)y };
 	}
 
-	float WindowsInput::GetMouseXImp()
+	float Input::GetMouseX()
 	{
-		return GetMousePositionImp().first;
+		return GetMousePosition().x;
 	}
 
-	float WindowsInput::GetMouseYImp()
+	float Input::GetMouseY()
 	{
-		return Input::GetMousePosition().second;
+		return GetMousePosition().y;
 	}
 }
 
