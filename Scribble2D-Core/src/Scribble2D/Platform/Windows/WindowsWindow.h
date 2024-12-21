@@ -14,7 +14,7 @@ namespace Scribble {
 		virtual ~WindowsWindow();
 
 		void OnUpdate() override;
-		static void OnWindowResize(uint32_t width, uint32_t height);
+		bool OnWindowResize(unsigned int width, unsigned int height) override;
 
 
 		inline unsigned int GetWidth() const override { return m_Data.Width; }

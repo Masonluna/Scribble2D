@@ -175,6 +175,8 @@ namespace Scribble {
 				data.EventCallback(event);
 			});
 
+
+		glViewport(0, 0, 1280, 720);
 	}
 
 	void WindowsWindow::Shutdown()
@@ -189,6 +191,12 @@ namespace Scribble {
 	{
 		glfwPollEvents();
 		m_Context->SwapBuffers();
+	}
+
+	bool WindowsWindow::OnWindowResize(unsigned int width, unsigned int height)
+	{
+		glViewport(0, 0, width, height);
+		return false;
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)

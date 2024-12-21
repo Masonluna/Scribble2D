@@ -19,11 +19,11 @@ public:
 			m_TimeElapsed -= 0.01f;
 		}
 		//SCB_INFO("ExampleLayer::Update");
-		m_Renderer.DrawQuad(glm::vec2(100.0f + step, 200.0f), glm::vec2(35.0f, 35.0f), 0.0f, glm::vec3(1.0f, 0.0f, 1.0f));
-		m_Renderer.DrawQuad(glm::vec2(140.0f + step, 200.0f), glm::vec2(35.0f, 35.0f), 0.0f, glm::vec3(1.0f, 0.0f, 1.0f));
-		m_Renderer.DrawQuad(glm::vec2(180.0f + step, 200.0f), glm::vec2(35.0f, 35.0f), 0.0f, glm::vec3(1.0f, 0.0f, 1.0f));
-		m_Renderer.DrawQuad(glm::vec2(220.0f + step, 200.0f), glm::vec2(35.0f, 35.0f), 0.0f, glm::vec3(1.0f, 0.0f, 1.0f));
-		m_Renderer.DrawQuad(glm::vec2(260.0f + step, 200.0f), glm::vec2(35.0f, 35.0f), 0.0f, glm::vec3(1.0f, 0.0f, 1.0f));
+		m_Renderer.DrawQuad(glm::vec2(1280.0f, 720.0f), glm::vec2(35.0f, 35.0f), 0.0f, glm::vec3(1.0f, 0.0f, 1.0f));
+		m_Renderer.DrawQuad(glm::vec2(40.0f, 200.0f), glm::vec2(35.0f, 35.0f), 0.0f, glm::vec3(1.0f, 0.0f, 1.0f));
+		m_Renderer.DrawQuad(glm::vec2(80.0f, 200.0f), glm::vec2(35.0f, 35.0f), 0.0f, glm::vec3(1.0f, 0.0f, 1.0f));
+		m_Renderer.DrawQuad(glm::vec2(120.0f, 200.0f), glm::vec2(35.0f, 35.0f), 0.0f, glm::vec3(1.0f, 0.0f, 1.0f));
+		m_Renderer.DrawQuad(glm::vec2(160.0f, 200.0f), glm::vec2(35.0f, 35.0f), 0.0f, glm::vec3(1.0f, 0.0f, 1.0f));
 	}
 
 	void OnEvent(Scribble::Event& event) override
