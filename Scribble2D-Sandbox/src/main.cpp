@@ -47,7 +47,8 @@ class Sandbox : public Scribble::Application
 {
 public:
 
-	Sandbox() 
+	Sandbox(Scribble::WindowSpecs specs)
+		:Scribble::Application(specs)
 	{
 		PushLayer(new ExampleLayer());
 	}
@@ -56,5 +57,6 @@ public:
 
 Scribble::Application* Scribble::CreateApplication()
 {
-	return new Sandbox();
+	Scribble::WindowSpecs specs("Sandbox", 1280, 720);
+	return new Sandbox(specs);
 }

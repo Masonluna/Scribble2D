@@ -12,9 +12,16 @@ namespace Scribble {
 
 	Application::Application()
 	{
-		// Set up window and GLFW context.
 		s_Instance = this;
 		m_Window = std::unique_ptr<Window>(Window::Create());
+		m_Window->SetEventCallback(std::bind(&Application::OnEvent, this, std::placeholders::_1));
+	}
+
+	Application::Application(WindowSpecs specs)
+	{
+		// Set up window and GLFW context.
+		s_Instance = this;
+		m_Window = std::unique_ptr<Window>(Window::Create(specs));
 		m_Window->SetEventCallback(std::bind(&Application::OnEvent, this, std::placeholders::_1));
 
 

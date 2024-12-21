@@ -10,6 +10,7 @@ namespace Scribble {
 	{
 	public:
 		Application();
+		Application(WindowSpecs specs);
 		virtual ~Application();
 
 		void Run();
