@@ -6,6 +6,8 @@
 
 namespace Scribble {
 
+	std::unique_ptr<Input> Input::s_Instance = std::make_unique<WindowsInput>();
+
 	bool WindowsInput::IsKeyPressedImp(const int key)
 	{
 		GLFWwindow* window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
