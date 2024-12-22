@@ -1,5 +1,5 @@
 #include "scbpch.h"
-#include "VertexBuffer.h"
+#include "Scribble2D/Renderer/VertexBuffer.h"
 
 Scribble::VertexBuffer::VertexBuffer(uint32_t size)
 {

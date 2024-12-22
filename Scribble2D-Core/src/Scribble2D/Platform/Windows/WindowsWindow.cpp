@@ -1,10 +1,10 @@
 #include "scbpch.h"
 #include <glad/glad.h>
-#include "WindowsWindow.h"
+#include "Scribble2D/Platform/Windows/WindowsWindow.h"
 
-#include "Events/ApplicationEvent.h"
-#include "Events/MouseEvent.h"
-#include "Events/KeyEvent.h"
+#include "Scribble2D/Events/ApplicationEvent.h"
+#include "Scribble2D/Events/MouseEvent.h"
+#include "Scribble2D/Events/KeyEvent.h"
 
 namespace Scribble {
 

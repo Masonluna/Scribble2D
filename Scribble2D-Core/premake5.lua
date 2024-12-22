@@ -11,13 +11,13 @@ project "Scribble2D-Core"
 	pchsource "src/scbpch.cpp"
 
     files {
-        "src/**.h",
+        "include/**.h",
         "src/**.cpp",
     }
 
     includedirs {
         "src",
-        "src/Scribble2D",
+        "include",
         "vendor/stb_image",
         "vendor/GLFW/include",
         "vendor/Glad/include",

@@ -1,5 +1,5 @@
 #include "scbpch.h"
-#include "ResourceManager.h"
+#include "Scribble2D/Renderer/ResourceManager.h"
 #include "glad/glad.h"
 #include "stb_image.h"
 

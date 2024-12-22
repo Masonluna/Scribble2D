@@ -1,5 +1,5 @@
 #include "scbpch.h"
-#include "VertexArray.h"
+#include "Scribble2D/Renderer/VertexArray.h"
 
 namespace Scribble {
 

@@ -1,6 +1,6 @@
 #include "scbpch.h"
-#include "Renderer/ResourceManager.h"
-#include "Application.h"
+#include "Scribble2D/Renderer/ResourceManager.h"
+#include "Scribble2D/Core/Application.h"
 #include "Scribble2D/Utils/Utils.h"
 
 #include <glad/glad.h>

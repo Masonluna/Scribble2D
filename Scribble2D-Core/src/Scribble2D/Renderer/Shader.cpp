@@ -1,5 +1,5 @@
 #include "scbpch.h"
-#include "Shader.h"
+#include "Scribble2D/Renderer/Shader.h"
 
 
 namespace Scribble {

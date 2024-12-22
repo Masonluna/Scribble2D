@@ -1,8 +1,8 @@
 #include "scbpch.h"
-#include "Renderer.h"
-#include "ResourceManager.h"
+#include "Scribble2D/Renderer/Renderer.h"
+#include "Scribble2D/Renderer/ResourceManager.h"
 
-#include "glm/gtc/matrix_transform.hpp"
+#include "glm-1.0.1/glm/gtc/matrix_transform.hpp"
 namespace Scribble {
 
 

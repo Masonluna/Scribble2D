@@ -1,6 +1,6 @@
 #include "scbpch.h"
 #include "glad/glad.h"
-#include "RenderContext.h"
+#include "Scribble2D/Renderer/RenderContext.h"
 
 Scribble::RenderContext::RenderContext(GLFWwindow* window)
 	:m_Window(window)

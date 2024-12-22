@@ -1,4 +1,4 @@
-#include <Scribble2D.h>
+#include <Scribble2D/Scribble2D.h>
 #include "Scribble2D/Events/MouseEvent.h"
 
 

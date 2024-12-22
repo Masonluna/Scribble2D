@@ -1,5 +1,5 @@
 #include "scbpch.h"
-#include "Utils.h"
+#include "Scribble2D/Utils/Utils.h"
 #include <GLFW/glfw3.h>
 
 namespace Scribble {

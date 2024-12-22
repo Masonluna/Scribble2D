@@ -1,5 +1,5 @@
 #include "scbpch.h"
-#include "Texture.h"
+#include "Scribble2D/Renderer/Texture.h"
 
 
 namespace Scribble {

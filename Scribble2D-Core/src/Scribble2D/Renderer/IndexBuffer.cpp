@@ -1,5 +1,5 @@
 #include "scbpch.h"
-#include "IndexBuffer.h"
+#include "Scribble2D/Renderer/IndexBuffer.h"
 
 Scribble::IndexBuffer::IndexBuffer(uint32_t* indices, uint32_t count)
 	: m_Count(count)
