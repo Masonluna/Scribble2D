@@ -1,5 +1,6 @@
 #pragma once
 #include "Scribble2D/Core/Application.h"
+#include "Scribble2D/Core/Log.h"
 
 extern Scribble::Application* Scribble::CreateApplication();
 

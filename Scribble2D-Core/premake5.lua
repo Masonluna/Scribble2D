@@ -7,6 +7,8 @@ project "Scribble2D-Core"
     targetdir ("../bin/" .. outputdir .. "/%{prj.name}")
     objdir("../bin-int/" .. outputdir .. "/%{prj.name}")
 
+    targetname ("Scribble2D-Core_%{cfg.buildcfg}")
+
 	pchheader "scbpch.h"
 	pchsource "src/scbpch.cpp"
 
@@ -19,22 +21,21 @@ project "Scribble2D-Core"
         "src",
         "include",
         "vendor/stb_image",
-        "vendor/GLFW/include",
-        "vendor/Glad/include",
-        "vendor/glm/glm-1.0.1",
-        "vendor/spdlog/include"
+        "vendor/FreeType/include"
     }
 
     libdirs {
         "vendor/GLFW/lib",
         "vendor/spdlog/lib",
-        "vendor/Glad/build/Debug"
+        "vendor/Glad/build/Debug",
+        "vendor/FreeType/lib"
     }
     links {
         "glfw3_mt.lib",
         "Glad",
         "opengl32.lib",
-        "spdlog.lib"
+        "spdlog.lib",
+        "freetype"
     }
 
     defines { "RESOURCE_PATH=\"" .. path.getabsolute("res/") .. "/\"" }
