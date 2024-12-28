@@ -17,8 +17,8 @@ namespace Scribble {
 	void ResourceManager::InitializeShaders()
 	{
 		LoadShader(getResourcePath("Shaders/renderer.vs.glsl").c_str(), getResourcePath("Shaders/renderer_col_sprite.fs.glsl").c_str(), nullptr, "solidShader");
-		LoadShader(getResourcePath("Shaders/renderer.vs.glsl").c_str(), getResourcePath("Shaders/renderer_tex_sprite.fs.glsl").c_str(), nullptr, "texShader");
-
+		LoadShader(getResourcePath("Shaders/renderer.vs.glsl").c_str(), getResourcePath("Shaders/renderer_tex_sprite.fs.glsl").c_str(), nullptr, "textureShader");
+		LoadShader(getResourcePath("Shaders/text.vs.glsl").c_str(),     getResourcePath("Shaders/text.fs.glsl").c_str(),                nullptr, "textShader");
 	}
 
 	Shader ResourceManager::LoadShader(const char* vShaderFile, const char* fShaderFile, const char* gShaderFile, std::string name)
@@ -53,6 +53,8 @@ namespace Scribble {
 		for (auto i : s_Textures)
 			glDeleteTextures(1, &i.second.m_TextureID);
 			
+		s_Shaders.clear();
+		s_Textures.clear();
 	}
 
 

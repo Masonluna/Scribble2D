@@ -5,8 +5,6 @@
 #include "glad/glad.h"
 #include "Scribble2D/Scene/Object.h"
 
-#include "ft2build.h"
-
 
 #include <unordered_map>
 
@@ -71,14 +69,12 @@ namespace Scribble {
 	private:
 		Shader m_TexturedShader;
 		Shader m_SolidShader;
+		Shader m_TextShader;
+
 		VertexArray m_VertexArray;
 		VertexData m_VertexData;
-
-		VertexArray m_TextVAO;
-
 		// Unordered Map is probably not useful here.
 		std::unordered_map<Shapes, VertexBuffer> m_VertexBuffers;
-		VertexBuffer m_TextBuffer;
 		std::unordered_map<Shapes, IndexBuffer> m_IndexBuffers;
 	};
 

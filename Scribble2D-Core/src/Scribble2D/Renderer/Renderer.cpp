@@ -13,6 +13,11 @@ namespace Scribble {
 		// ========================================
 		m_VertexArray.Init();
 
+		uint32_t quadIndices[6] = {
+			0, 1, 2,
+			1, 2, 3
+		};
+
 		m_VertexBuffers.emplace(std::piecewise_construct,
 			std::forward_as_tuple(Shapes::Triangle),
 			std::forward_as_tuple(m_VertexData.triangleVertices, sizeof(VertexData::triangleVertices)));
@@ -25,7 +30,7 @@ namespace Scribble {
 		// Index Buffers 
 		m_IndexBuffers.emplace(std::piecewise_construct,
 			std::forward_as_tuple(Shapes::Quad),
-			std::forward_as_tuple(m_VertexData.quadIndices, 6));
+			std::forward_as_tuple(quadIndices, 6));
 
 
 		// Set Vertex Buffer Layout
@@ -40,7 +45,9 @@ namespace Scribble {
 		// ========================================
 		ResourceManager::InitializeShaders();
 		m_SolidShader =    ResourceManager::GetShader("solidShader");
-		m_TexturedShader = ResourceManager::GetShader("texShader");
+		m_TexturedShader = ResourceManager::GetShader("textureShader");
+
+		m_TextShader = ResourceManager::GetShader("textShader");
 	}
 
 	void Renderer::Clear()
@@ -68,11 +75,11 @@ namespace Scribble {
 
 		// TODO: this can most certainly be done somewhere else, and outside of the render loop.
 		// Projection can probably go into Framebuffer somewhere.
+		this->m_SolidShader.Bind();
 		glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(Application::Get().GetWindow().GetWidth()),
 			static_cast<float>(Application::Get().GetWindow().GetHeight()), 0.0f, -1.0f, 1.0f);
 		m_SolidShader.SetMat4("projection", projection);
 
-		this->m_SolidShader.Bind();
 		m_VertexArray.AddBuffer(m_VertexBuffers[Shapes::Quad], m_VertexBuffers[Shapes::Quad].GetLayout());
 
 		m_SolidShader.SetMat4("model", model);
