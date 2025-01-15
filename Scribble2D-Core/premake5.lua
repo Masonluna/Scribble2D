@@ -20,8 +20,6 @@ project "Scribble2D-Core"
     includedirs {
         "src",
         "include",
-        "vendor/stb_image",
-        "vendor/FreeType/include"
     }
 
     libdirs {

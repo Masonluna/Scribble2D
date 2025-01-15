@@ -5,6 +5,7 @@
 #include "Scribble2D/Events/ApplicationEvent.h"
 #include "Scribble2D/Events/MouseEvent.h"
 #include "Scribble2D/Events/KeyEvent.h"
+#include "Scribble2D/Renderer/ResourceManager.h"
 
 namespace Scribble {
 
@@ -27,6 +28,7 @@ namespace Scribble {
 		if (!glfwGetCurrentContext()) {
 			SCB_CORE_FATAL("NO CURRENT CONTEXT");
 		}
+		ResourceManager::InitializeShaders();
 	}
 
 	WindowsWindow::~WindowsWindow()

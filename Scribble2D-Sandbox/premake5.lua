@@ -21,24 +21,20 @@ project "Scribble2D-Sandbox"
         "vendor/Scribble2D/lib"
     }
 
-    links {
-        "Scribble2D-Core"
-    }
-
     filter "system:windows"
         systemversion "latest"
 
         defines { "SCRIBBLE_CORE_PLATFORM_WINDOWS" }
 
-    filter "configurations:Debug"
-        defines "SCRIBBLE_APP_DEBUG"
-        runtime "Debug"
-        symbols "on"
+        filter "configurations:Debug"
+            links { "Scribble2D-Core_Debug.lib" }
+            runtime "Debug"
+            symbols "On"
 
-    filter "configurations:Release"
-        defines "SCRIBBLE_APP_RELEEASE"
-        runtime "Release"
-        optimize "on"
+        filter "configurations:Release"
+            links { "Scribble2D-Core_Release.lib" }
+            runtime "Release"
+            optimize "On"
 
     filter "action:vs*"
         buildoptions { "/utf-8" }

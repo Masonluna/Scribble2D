@@ -2,6 +2,7 @@
 #include "Scribble2D/Core/Application.h"
 #include "VertexArray.h"
 #include "Shader.h"
+#include "Texture.h"
 #include "glad/glad.h"
 #include "Scribble2D/Scene/Object.h"
 
@@ -58,7 +59,7 @@ namespace Scribble {
 		void Clear();
 
 		void DrawQuad(const glm::vec2& pos, const glm::vec2& size, float rotate, const glm::vec3& color);
-		//void DrawQuad(glm::vec2& pos, float width, float height, float rotate = 0.0f, Texture2D& texture);
+		void DrawQuad(const glm::vec2& pos, float width, float height, float rotate, Texture2D& texture);
 		void DrawObject(const Object& object);
 		void DrawTriangle(const glm::vec2& pos, float scale, float rotate, const glm::vec3& color);
 

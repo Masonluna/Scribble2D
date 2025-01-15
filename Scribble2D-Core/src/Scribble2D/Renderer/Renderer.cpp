@@ -41,13 +41,17 @@ namespace Scribble {
 
 		m_VertexBuffers[Shapes::Quad].SetLayout(layout);
 
+
 		// ======== Initialize Shaders ============
 		// ========================================
-		ResourceManager::InitializeShaders();
 		m_SolidShader =    ResourceManager::GetShader("solidShader");
 		m_TexturedShader = ResourceManager::GetShader("textureShader");
 
 		m_TextShader = ResourceManager::GetShader("textShader");
+
+		// ======== Initialize Textures ===========
+		// ========================================
+
 	}
 
 	void Renderer::Clear()
@@ -84,6 +88,40 @@ namespace Scribble {
 
 		m_SolidShader.SetMat4("model", model);
 		m_SolidShader.SetFloat4("spriteColor", glm::vec4(color, 1.0f));
+
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+	}
+
+	void Renderer::DrawQuad(const glm::vec2& pos, float width, float height, float rotate, Texture2D& texture)
+	{
+		m_VertexArray.Bind();  // Bind VAO
+
+		m_VertexBuffers[Shapes::Quad].Bind();  // Bind VBO
+		m_IndexBuffers[Shapes::Quad].Bind();   // Bind EBO
+
+		// Go in REVERSE ORDER: Transform, then rotate, then scale
+		glm::mat4 model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(pos, 0.0f)); // Transform 
+
+		model = glm::translate(model, glm::vec3(0.5f * width, 0.5f * height, 0.0f)); // Origin now in center for rotation
+		model = glm::rotate(model, glm::radians(rotate), glm::vec3(0.0f, 0.0f, 1.0f)); // Rotate
+		model = glm::translate(model, glm::vec3(-0.5f * width, -0.5f * height, 0.0f)); // Origin back
+
+		model = glm::scale(model, glm::vec3(width, height, 1.0f)); // Scale
+
+
+		// TODO: this can most certainly be done somewhere else, and outside of the render loop.
+		// Projection can probably go into Framebuffer somewhere.
+		this->m_TexturedShader.Bind();
+		glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(Application::Get().GetWindow().GetWidth()),
+			static_cast<float>(Application::Get().GetWindow().GetHeight()), 0.0f, -1.0f, 1.0f);
+		m_TexturedShader.SetMat4("projection", projection);
+
+		m_VertexArray.AddBuffer(m_VertexBuffers[Shapes::Quad], m_VertexBuffers[Shapes::Quad].GetLayout());
+
+		m_TexturedShader.SetMat4("model", model);
+		m_TexturedShader.SetFloat3("spriteColor", glm::vec3(1.0f));
+		texture.Bind();
 
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	}

@@ -15,6 +15,7 @@ namespace Scribble {
 
 
 		static void InitializeShaders();
+		static void InitializeTextures();
 
 		static Shader LoadShader(const char* vShaderFile, const char* fShaderFile, const char* gShaderFile, std::string name);
 		static Shader GetShader(std::string name);

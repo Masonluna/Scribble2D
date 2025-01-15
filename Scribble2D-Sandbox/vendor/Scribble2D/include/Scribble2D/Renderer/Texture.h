@@ -22,7 +22,7 @@ namespace Scribble {
 		uint32_t m_FilterMin;
 		uint32_t m_FilterMax;
 
-		Texture2D() {}
+		Texture2D();
 
 		void Generate(uint32_t width, uint32_t height, unsigned char* data);
 		void Bind() const { glBindTexture(GL_TEXTURE_2D, m_TextureID); }

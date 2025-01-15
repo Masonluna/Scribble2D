@@ -1,7 +1,7 @@
 #include "scbpch.h"
 #include "Scribble2D/Renderer/ResourceManager.h"
 #include "glad/glad.h"
-#include "stb_image.h"
+#include "Scribble2D/Core/stb_image.h"
 
 #include <filesystem>
 
@@ -19,6 +19,11 @@ namespace Scribble {
 		LoadShader(getResourcePath("Shaders/renderer.vs.glsl").c_str(), getResourcePath("Shaders/renderer_col_sprite.fs.glsl").c_str(), nullptr, "solidShader");
 		LoadShader(getResourcePath("Shaders/renderer.vs.glsl").c_str(), getResourcePath("Shaders/renderer_tex_sprite.fs.glsl").c_str(), nullptr, "textureShader");
 		LoadShader(getResourcePath("Shaders/text.vs.glsl").c_str(),     getResourcePath("Shaders/text.fs.glsl").c_str(),                nullptr, "textShader");
+	}
+
+	void ResourceManager::InitializeTextures()
+	{
+		// If I want pre-genned textures, they should go here.
 	}
 
 	Shader ResourceManager::LoadShader(const char* vShaderFile, const char* fShaderFile, const char* gShaderFile, std::string name)
@@ -104,6 +109,17 @@ namespace Scribble {
 
 	Texture2D ResourceManager::LoadTextureFromFile(const char* file, bool alpha)
 	{
-		return Texture2D();
+		Texture2D tex;
+		if (alpha) {
+			tex.m_InternalFormat = GL_RGBA;
+			tex.m_ImageFormat = GL_RGBA;
+		}
+
+		int width, height, numChannels;
+		unsigned char* data = stbi_load(file, &width, &height, &numChannels, 0);
+
+		tex.Generate(width, height, data);
+		stbi_image_free(data);
+		return tex;
 	}
 }
