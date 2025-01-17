@@ -29,7 +29,7 @@ public:
 		m_Renderer.DrawQuad(glm::vec2(120.0f, 200.0f), glm::vec2(35.0f, 35.0f), 0.0f, glm::vec3(1.0f, 0.0f, 1.0f));
 		m_Renderer.DrawQuad(glm::vec2(160.0f, 200.0f), glm::vec2(35.0f, 35.0f), 0.0f, glm::vec3(1.0f, 0.0f, 1.0f));
 
-		m_TextRenderer.DrawString("Hello, World!", glm::vec2(5.0f, 5.0f), 1.0f, glm::vec3(1.0f, 1.0f, 1.0f));
+		m_TextRenderer.DrawString("Hello, World!", glm::vec2(5.0f, 5.0f), 1.0f, glm::vec3(1.0f, 0.0f, 1.0f));
 	}
 
 	void OnEvent(Scribble::Event& event) override
