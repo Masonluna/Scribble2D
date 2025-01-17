@@ -1,4 +1,5 @@
 #include <Scribble2D/Scribble2D.h>
+#include "Scribble2D/Renderer/TextRenderer.h"
 #include "Scribble2D/Events/MouseEvent.h"
 #include "Scribble2D/Renderer/ResourceManager.h"
 
@@ -10,6 +11,8 @@ public:
 		: Layer("Example")
 	{
 		m_Renderer.Init();
+		m_TextRenderer.Init();
+		m_TextRenderer.LoadFont("fonts/ocraext.TTF", 24);
 	}
 
 	void OnUpdate(Scribble::Timestep ts) override
@@ -25,6 +28,8 @@ public:
 		m_Renderer.DrawQuad(glm::vec2(80.0f, 200.0f), glm::vec2(35.0f, 35.0f), 0.0f, glm::vec3(1.0f, 0.0f, 1.0f));
 		m_Renderer.DrawQuad(glm::vec2(120.0f, 200.0f), glm::vec2(35.0f, 35.0f), 0.0f, glm::vec3(1.0f, 0.0f, 1.0f));
 		m_Renderer.DrawQuad(glm::vec2(160.0f, 200.0f), glm::vec2(35.0f, 35.0f), 0.0f, glm::vec3(1.0f, 0.0f, 1.0f));
+
+		m_TextRenderer.DrawString("Hello, World!", glm::vec2(5.0f, 5.0f), 1.0f, glm::vec3(1.0f, 1.0f, 1.0f));
 	}
 
 	void OnEvent(Scribble::Event& event) override
@@ -40,6 +45,7 @@ public:
 
 private:
 	Scribble::Renderer m_Renderer;
+	Scribble::TextRenderer m_TextRenderer;
 	unsigned int step = 2;
 	float m_TimeElapsed = 0.0f;
 };

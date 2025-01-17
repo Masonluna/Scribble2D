@@ -3,6 +3,7 @@
 #include "Scribble2D/Renderer/ResourceManager.h"
 
 #include "glm-1.0.1/glm/gtc/matrix_transform.hpp"
+
 namespace Scribble {
 
 
@@ -33,6 +34,8 @@ namespace Scribble {
 			std::forward_as_tuple(quadIndices, 6));
 
 
+
+
 		// Set Vertex Buffer Layout
 		VertexBufferLayout layout = {
 			{Scribble::ShaderDataType::Float2, "a_Position"},
@@ -47,17 +50,17 @@ namespace Scribble {
 		m_SolidShader =    ResourceManager::GetShader("solidShader");
 		m_TexturedShader = ResourceManager::GetShader("textureShader");
 
-		m_TextShader = ResourceManager::GetShader("textShader");
 
 		// ======== Initialize Textures ===========
 		// ========================================
-
 	}
 
 	void Renderer::Clear()
 	{
 		glClear(GL_COLOR_BUFFER_BIT);
 	}
+
+
 
 	void Renderer::DrawQuad(const glm::vec2& pos, const glm::vec2& size, float rotate, const glm::vec3& color)
 	{
@@ -138,10 +141,4 @@ namespace Scribble {
 	{
 
 	}
-
-	void Renderer::DrawString(const std::string & text, const glm::vec2 & pos, float scale, const glm::vec4 & color)
-	{
-
-	}
-
 }

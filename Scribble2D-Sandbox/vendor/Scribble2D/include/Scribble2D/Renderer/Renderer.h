@@ -1,10 +1,10 @@
 #pragma once
 #include "Scribble2D/Core/Application.h"
+#include "Scribble2D/Scene/Object.h"
 #include "VertexArray.h"
 #include "Shader.h"
 #include "Texture.h"
 #include "glad/glad.h"
-#include "Scribble2D/Scene/Object.h"
 
 
 #include <unordered_map>
@@ -48,6 +48,7 @@ namespace Scribble {
 	};
 
 
+
 	class Renderer
 	{
 
@@ -65,12 +66,9 @@ namespace Scribble {
 
 		void DrawLine(const glm::vec2& p1, const glm::vec2& p2, const glm::vec4& color, float thickness);
 
-		void DrawString(const std::string& text, const glm::vec2& pos, float scale, const glm::vec4& color);
-
 	private:
 		Shader m_TexturedShader;
 		Shader m_SolidShader;
-		Shader m_TextShader;
 
 		VertexArray m_VertexArray;
 		VertexData m_VertexData;
