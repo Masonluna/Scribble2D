@@ -61,7 +61,7 @@ namespace Scribble {
 
 		void BeginScene();
 
-		void DrawQuad(const glm::vec2& pos, const glm::vec2& size, float rotate, const glm::vec3& color);
+		void DrawQuad(const glm::vec2& pos, float width, float height, float rotate, const glm::vec3& color);
 		void DrawQuad(const glm::vec2& pos, float width, float height, float rotate, Texture2D& texture);
 		void DrawObject(const Object& object);
 		void DrawTriangle(const glm::vec2& pos, float scale, float rotate, const glm::vec3& color);

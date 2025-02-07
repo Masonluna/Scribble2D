@@ -79,7 +79,7 @@ namespace Scribble {
 
 
 
-	void Renderer::DrawQuad(const glm::vec2& pos, const glm::vec2& size, float rotate, const glm::vec3& color)
+	void Renderer::DrawQuad(const glm::vec2& pos, float width, float height, float rotate, const glm::vec3& color)
 	{
 		m_VertexArray.Bind();
 
@@ -90,11 +90,11 @@ namespace Scribble {
 		glm::mat4 model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(pos, 0.0f)); // Transform 
 
-		model = glm::translate(model, glm::vec3(0.5f * size.x, 0.5f * size.y, 0.0f)); // Origin now in center for rotation
+		model = glm::translate(model, glm::vec3(0.5f * width, 0.5f * height, 0.0f)); // Origin now in center for rotation
 		model = glm::rotate(model, glm::radians(rotate), glm::vec3(0.0f, 0.0f, 1.0f)); // Rotate
-		model = glm::translate(model, glm::vec3(-0.5f * size.x, -0.5f * size.y, 0.0f)); // Origin back
+		model = glm::translate(model, glm::vec3(-0.5f * width, -0.5f * height, 0.0f)); // Origin back
 
-		model = glm::scale(model, glm::vec3(size, 1.0f)); // Scale
+		model = glm::scale(model, glm::vec3(width, height, 1.0f)); // Scale
 
 		this->m_SolidShader.Bind();
 		m_VertexArray.AddBuffer(m_VertexBuffers[Shapes::Quad], m_VertexBuffers[Shapes::Quad].GetLayout());
@@ -137,7 +137,7 @@ namespace Scribble {
 
 	void Renderer::DrawObject(const Object& object)
 	{
-		DrawQuad(object.GetPosition(), object.GetSize(), object.GetRotation(), object.GetColor());
+		DrawQuad(object.GetPosition(), object.GetSize().x, object.GetSize().y, object.GetRotation(), object.GetColor());
 	}
 
 	void Renderer::DrawTriangle(const glm::vec2& pos, float scale, float rotate, const glm::vec3& color)
