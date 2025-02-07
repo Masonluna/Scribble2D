@@ -1,6 +1,8 @@
 #include "scbpch.h"
 #include "Scribble2D/Renderer/Renderer.h"
 #include "Scribble2D/Renderer/ResourceManager.h"
+#include "Scribble2D/Core/Application.h"
+
 
 #include "glm-1.0.1/glm/gtc/matrix_transform.hpp"
 
@@ -51,8 +53,12 @@ namespace Scribble {
 		m_TexturedShader = ResourceManager::GetShader("textureShader");
 
 
-		// ======== Initialize Textures ===========
-		// ========================================
+		
+		m_Projection = glm::ortho(0.0f, static_cast<float>(Application::Get().GetWindow().GetWidth()),
+			static_cast<float>(Application::Get().GetWindow().GetHeight()), 0.0f, -1.0f, 1.0f);
+
+
+		glClearColor(0, 0, 0, 1);
 	}
 
 	void Renderer::Clear()
@@ -60,16 +66,27 @@ namespace Scribble {
 		glClear(GL_COLOR_BUFFER_BIT);
 	}
 
+	void Renderer::BeginScene()
+	{
+		m_Projection = glm::ortho(0.0f, static_cast<float>(Application::Get().GetWindow().GetWidth()),
+			static_cast<float>(Application::Get().GetWindow().GetHeight()), 0.0f, -1.0f, 1.0f);
+
+		m_TexturedShader.Bind();
+		m_TexturedShader.SetMat4("projection", m_Projection);
+		m_SolidShader.Bind();
+		m_SolidShader.SetMat4("projection", m_Projection);
+	}
+
 
 
 	void Renderer::DrawQuad(const glm::vec2& pos, float width, float height, float rotate, const glm::vec3& color)
 	{
-		m_VertexArray.Bind();  // Bind VAO
+		m_VertexArray.Bind();
 
-		m_VertexBuffers[Shapes::Quad].Bind();  // Bind VBO
-		m_IndexBuffers[Shapes::Quad].Bind();   // Bind EBO
+		m_VertexBuffers[Shapes::Quad].Bind();
+		m_IndexBuffers[Shapes::Quad].Bind();
 
-		// Go in REVERSE ORDER: Transform, then rotate, then scale
+		// Transform, then rotate, then scale
 		glm::mat4 model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(pos, 0.0f)); // Transform 
 
@@ -79,14 +96,7 @@ namespace Scribble {
 
 		model = glm::scale(model, glm::vec3(width, height, 1.0f)); // Scale
 
-
-		// TODO: this can most certainly be done somewhere else, and outside of the render loop.
-		// Projection can probably go into Framebuffer somewhere.
 		this->m_SolidShader.Bind();
-		glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(Application::Get().GetWindow().GetWidth()),
-			static_cast<float>(Application::Get().GetWindow().GetHeight()), 0.0f, -1.0f, 1.0f);
-		m_SolidShader.SetMat4("projection", projection);
-
 		m_VertexArray.AddBuffer(m_VertexBuffers[Shapes::Quad], m_VertexBuffers[Shapes::Quad].GetLayout());
 
 		m_SolidShader.SetMat4("model", model);
@@ -97,12 +107,12 @@ namespace Scribble {
 
 	void Renderer::DrawQuad(const glm::vec2& pos, float width, float height, float rotate, Texture2D& texture)
 	{
-		m_VertexArray.Bind();  // Bind VAO
+		m_VertexArray.Bind();
 
-		m_VertexBuffers[Shapes::Quad].Bind();  // Bind VBO
-		m_IndexBuffers[Shapes::Quad].Bind();   // Bind EBO
+		m_VertexBuffers[Shapes::Quad].Bind();
+		m_IndexBuffers[Shapes::Quad].Bind();
 
-		// Go in REVERSE ORDER: Transform, then rotate, then scale
+		// Transform, then rotate, then scale
 		glm::mat4 model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(pos, 0.0f)); // Transform 
 
@@ -116,10 +126,6 @@ namespace Scribble {
 		// TODO: this can most certainly be done somewhere else, and outside of the render loop.
 		// Projection can probably go into Framebuffer somewhere.
 		this->m_TexturedShader.Bind();
-		glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(Application::Get().GetWindow().GetWidth()),
-			static_cast<float>(Application::Get().GetWindow().GetHeight()), 0.0f, -1.0f, 1.0f);
-		m_TexturedShader.SetMat4("projection", projection);
-
 		m_VertexArray.AddBuffer(m_VertexBuffers[Shapes::Quad], m_VertexBuffers[Shapes::Quad].GetLayout());
 
 		m_TexturedShader.SetMat4("model", model);

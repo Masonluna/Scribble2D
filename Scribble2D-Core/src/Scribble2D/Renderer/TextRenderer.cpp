@@ -1,6 +1,7 @@
 #include "scbpch.h"
 #include "Scribble2d/Renderer/TextRenderer.h"
 #include "Scribble2D/Renderer/ResourceManager.h"
+#include "Scribble2D/Core/Application.h"
 
 #include "glm-1.0.1/glm/gtc/matrix_transform.hpp"
 

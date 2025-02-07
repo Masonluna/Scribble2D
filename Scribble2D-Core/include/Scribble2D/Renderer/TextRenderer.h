@@ -1,5 +1,4 @@
 #pragma once
-#include "Scribble2D/Core/Application.h"
 #include "VertexArray.h"
 #include "Shader.h"
 #include "glad/glad.h"
