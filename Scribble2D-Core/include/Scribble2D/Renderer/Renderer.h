@@ -1,6 +1,6 @@
 #pragma once
-#include "Scribble2D/Core/Application.h"
 #include "Scribble2D/Scene/Object.h"
+
 #include "VertexArray.h"
 #include "Shader.h"
 #include "Texture.h"
@@ -59,6 +59,8 @@ namespace Scribble {
 		void SetClearColor(const glm::vec4& color) { glClearColor(color.r, color.g, color.b, color.a); };
 		void Clear();
 
+		void BeginScene();
+
 		void DrawQuad(const glm::vec2& pos, const glm::vec2& size, float rotate, const glm::vec3& color);
 		void DrawQuad(const glm::vec2& pos, float width, float height, float rotate, Texture2D& texture);
 		void DrawObject(const Object& object);
@@ -72,7 +74,10 @@ namespace Scribble {
 
 		VertexArray m_VertexArray;
 		VertexData m_VertexData;
-		// Unordered Map is probably not useful here.
+
+		glm::mat4 m_Projection;
+
+		// Unordered Map is probably not useful here. Consider replacing with an array.
 		std::unordered_map<Shapes, VertexBuffer> m_VertexBuffers;
 		std::unordered_map<Shapes, IndexBuffer> m_IndexBuffers;
 	};

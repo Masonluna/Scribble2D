@@ -3,6 +3,8 @@
 #include "../Events/ApplicationEvent.h"
 #include "LayerStack.h"
 #include "Window.h"
+#include <Scribble2D/Renderer/TextRenderer.h>
+#include <Scribble2D/Renderer/Renderer.h>
 
 namespace Scribble {
 
@@ -16,6 +18,8 @@ namespace Scribble {
 		void Run();
 
 		Window& GetWindow() { return *m_Window; }
+		Renderer& GetRenderer() { return m_Renderer; }
+		TextRenderer& GetTextRenderer() { return m_TextRenderer; }
 
 		void OnEvent(Event& e);
 
@@ -24,10 +28,13 @@ namespace Scribble {
 
 		static Application& Get() { return *s_Instance; }
 
-
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
 		bool OnWindowResize(WindowResizeEvent& e);
+
+	private:
+		Renderer m_Renderer;
+		TextRenderer m_TextRenderer;
 
 		std::unique_ptr<Window> m_Window;
 		bool m_Running = true;

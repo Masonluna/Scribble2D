@@ -15,6 +15,8 @@ namespace Scribble {
 		s_Instance = this;
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(std::bind(&Application::OnEvent, this, std::placeholders::_1));
+		m_Renderer.Init();
+		m_TextRenderer.Init();
 	}
 
 	Application::Application(WindowSpecs specs)
@@ -24,7 +26,8 @@ namespace Scribble {
 		m_Window = std::unique_ptr<Window>(Window::Create(specs));
 		m_Window->SetEventCallback(std::bind(&Application::OnEvent, this, std::placeholders::_1));
 
-
+		m_Renderer.Init();
+		m_TextRenderer.Init();
 	}
 	
 	Application::~Application()
@@ -34,13 +37,13 @@ namespace Scribble {
 	{
 		 SCB_INFO("Hello, Application!");
 		 while (m_Running) {
-			 glClearColor(0, 0, 0, 1);
-			 glClear(GL_COLOR_BUFFER_BIT);
+			 m_Renderer.Clear();
 
 			 float time = Time::GetTime();
 			 Timestep timestep = time - m_LastFrameTime;
 			 m_LastFrameTime = time;
 
+			 m_Renderer.BeginScene();
 			 if (!m_Minimized) {
 
 

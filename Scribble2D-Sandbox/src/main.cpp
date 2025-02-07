@@ -8,10 +8,8 @@ class ExampleLayer : public Scribble::Layer
 {
 public:
 	ExampleLayer()
-		: Layer("Example")
+		: Layer("Example"), m_Renderer(Scribble::Application::Get().GetRenderer()), m_TextRenderer(Scribble::Application::Get().GetTextRenderer())
 	{
-		m_Renderer.Init();
-		m_TextRenderer.Init();
 		m_TextRenderer.LoadFont("fonts/ocraext.TTF", 24);
 	}
 
@@ -44,8 +42,8 @@ public:
 	}
 
 private:
-	Scribble::Renderer m_Renderer;
-	Scribble::TextRenderer m_TextRenderer;
+	Scribble::Renderer& m_Renderer;
+	Scribble::TextRenderer& m_TextRenderer;
 	unsigned int step = 2;
 	float m_TimeElapsed = 0.0f;
 };
